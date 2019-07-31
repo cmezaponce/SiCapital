@@ -13,5 +13,9 @@
 			<base-name>co.gov.secretariamovilidad.sicapital.vista</base-name>
 			<var>vista</var>
 		</resource-bundle>
+                <resource-bundle>
+			<base-name>co.gov.secretariamovilidad.sicapital.estudiosprevios</base-name>
+			<var>estudiosprevios</var>
+		</resource-bundle>
 	</application>
 </faces-config>
