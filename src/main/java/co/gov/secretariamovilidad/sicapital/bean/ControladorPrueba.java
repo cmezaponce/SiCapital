@@ -10,21 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ * Controlador base para tomar como ejemplo para los demas
  * @author maikol
  */
 @ManagedBean(name = ControladorPrueba.BEAN_NAME)
-@RequestScoped
+@SessionScoped
 public class ControladorPrueba extends AbstractMB{
     
     /** Logger **/
@@ -36,7 +34,9 @@ public class ControladorPrueba extends AbstractMB{
     /** Atributo aplicacionBundle : ResourceBundle */
     private ResourceBundle aplicacionBundle;
     
+    /** Atributo tipo interface */
     private Icontrato icontrato;
+    
     /**
      * Atributos de la clase 
      */
@@ -44,14 +44,13 @@ public class ControladorPrueba extends AbstractMB{
     private String message;
     private List <CoEntidadesIas> listaCoEntidades;
     private CoEntidadesIas coEntidadesIas;
-    private CoEntidadesIas coEntidadesIasEliminar;
+    private int codigoEntidad;
     
     @PostConstruct
     public void init(){
         try {
             icontrato = new ContratoFachada();
             coEntidadesIas = new CoEntidadesIas();
-            coEntidadesIasEliminar = new CoEntidadesIas();
             listaCoEntidades = new ArrayList<CoEntidadesIas>();
             listaCoEntidades = icontrato.retornaCoEntidadesIas();
             aplicacionBundle = ResourceBundleUtil.getAplicacionBundle();
@@ -59,22 +58,44 @@ public class ControladorPrueba extends AbstractMB{
             SesionUtil.getInstance().addException(e);
 	}
     }
-     
-    public void saveMessage(ActionEvent actionEvent) throws SiCapitalNegocioExcepcion {
-        FacesContext context = FacesContext.getCurrentInstance();
-        String msg2 = aplicacionBundle.getString("msg.error.sistema");
-        SesionUtil.getInstance().addError(msg2);
-        icontrato.crearCoEntidades(coEntidadesIas);
-        coEntidadesIas = new CoEntidadesIas();
-        listaCoEntidades = icontrato.retornaCoEntidadesIas();
+    
+    /**
+     * Agregar un nuevo objeto CoEntidadesIas
+     * @param actionEvent 
+     */
+    public void saveMessage(ActionEvent actionEvent) {
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+            String msg2 = aplicacionBundle.getString("msg.ok.sistema");
+            SesionUtil.getInstance().addError(msg2);
+            icontrato.crearCoEntidades(coEntidadesIas);
+            coEntidadesIas = new CoEntidadesIas();
+            listaCoEntidades = icontrato.retornaCoEntidadesIas();
+        }catch(SiCapitalNegocioExcepcion s){
+             SesionUtil.getInstance().addError(s.getMessage());
+        }
     }
     
-    public void eliminarEntidad(ActionEvent event) throws SiCapitalNegocioExcepcion{
-        icontrato.removerCoEntidades(coEntidadesIasEliminar);
-        coEntidadesIas = new CoEntidadesIas();
-        listaCoEntidades = icontrato.retornaCoEntidadesIas();
+    /**
+     * Eliminar un objeto CoEntidadesIas
+     * @param actionEvent 
+     */
+    public void eliminarEntidad(ActionEvent actionEvent) {
+        try {
+            String idTipoSer = actionEvent.getComponent().getAttributes().get("idCodigo").toString();
+            CoEntidadesIas c = icontrato.retornaCoEntidadesIasPorId(Integer.parseInt(idTipoSer));
+            icontrato.removerCoEntidades(c);
+            coEntidadesIas = new CoEntidadesIas();
+            listaCoEntidades = icontrato.retornaCoEntidadesIas();
+            codigoEntidad = 0;
+        }catch(SiCapitalNegocioExcepcion s){
+             SesionUtil.getInstance().addError(s.getMessage());
+        }
     }
     
+    /*
+    * SETTER AND GETTER
+    */
     public String getMessage() {
         return message;
     }
@@ -107,13 +128,13 @@ public class ControladorPrueba extends AbstractMB{
         this.coEntidadesIas = coEntidadesIas;
     }
 
-    public CoEntidadesIas getCoEntidadesIasEliminar() {
-        return coEntidadesIasEliminar;
+    public int getCodigoEntidad() {
+        return codigoEntidad;
     }
 
-    public void setCoEntidadesIasEliminar(CoEntidadesIas coEntidadesIasEliminar) {
-        this.coEntidadesIasEliminar = coEntidadesIasEliminar;
+    public void setCodigoEntidad(int codigoEntidad) {
+        this.codigoEntidad = codigoEntidad;
     }
-    
+
     
 }

@@ -54,5 +54,15 @@ public class ContratoFachada implements Icontrato {
             throw new SiCapitalNegocioExcepcion(e);
         }
     }
-
+    
+    @Override
+    public CoEntidadesIas retornaCoEntidadesIasPorId(int id) throws SiCapitalNegocioExcepcion {
+          try {
+            return coEntidadesIasFachada.retornaCoEntidadesIasPorId(id);
+        } catch (SiCapitalEntidadExcepcion see) {
+            throw new SiCapitalNegocioExcepcion(see);
+        } catch (Exception e) {
+            throw new SiCapitalNegocioExcepcion(e);
+        }
+    }
 }
