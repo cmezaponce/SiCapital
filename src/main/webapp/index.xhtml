@@ -30,7 +30,7 @@
                 <p:commandButton value="Enviar" actionListener="#{controladorArqitectura.saveMessage}" update="@form" />
             </h:panelGrid>
             <p:dataTable value="#{controladorArqitectura.listaCoEntidades}" 
-                         var="entidades" rows="5"
+                         var="entidades" rows="10"
                          paginator="true">
                 <p:column headerText="Codigo">
                     <h:outputText  value="#{entidades.codigo}"/>
@@ -39,8 +39,9 @@
                     <h:outputText  value="#{entidades.descripcion}"/>
                 </p:column>
                 <p:column headerText="acciones">
-                    <p:commandButton value="Borrar" actionListener="#{controladorArqitectura.eliminarEntidad}" update="@form">
-                        <f:setPropertyActionListener target="#{controladorArqitectura.coEntidadesIasEliminar}" value="#{entidades}"/>
+                    <p:commandButton value="Borrar" actionListener="#{controladorArqitectura.eliminarEntidad}"  update="@form">
+                        <f:setPropertyActionListener  value="#{entidades.codigo}" target="#{controladorArqitectura.codigoEntidad}"/>
+                        <f:attribute value="#{entidades.codigo}" name="idCodigo" />
                     </p:commandButton>
                 </p:column>
             </p:dataTable>

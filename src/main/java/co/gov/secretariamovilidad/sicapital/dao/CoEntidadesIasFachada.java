@@ -56,10 +56,15 @@ public class CoEntidadesIasFachada extends AbstractFacade<CoEntidadesIas> {
     
     public void crearCoEntidades(CoEntidadesIas coEntidadesIas)throws SiCapitalEntidadExcepcion {
          try {
+             /*getEntityManager().getTransaction().begin();
+             create(coEntidadesIas);
+             getEntityManager().getTransaction().commit();*/
              createFreeResorces(coEntidadesIas);
         } catch (PersistenceException pe) {
+             System.out.println(pe.getMessage());
             throw new SiCapitalEntidadExcepcion(pe);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new SiCapitalEntidadExcepcion(ErrorEnum.SYSx001, e);
         }
     }
@@ -75,4 +80,19 @@ public class CoEntidadesIasFachada extends AbstractFacade<CoEntidadesIas> {
             throw new SiCapitalEntidadExcepcion(ErrorEnum.SYSx001, e);
         }
     }
+     
+     public CoEntidadesIas retornaCoEntidadesIasPorId(int id)throws Exception {
+         try {
+           Query query = getEntityManager().createNamedQuery("CoEntidadesIas.findById").setParameter("id", id);
+           CoEntidadesIas coEntidadesIas = (CoEntidadesIas) query.getSingleResult();
+            if (coEntidadesIas != null) {
+                return coEntidadesIas;
+            }
+        } catch (PersistenceException pe) {
+            throw new SiCapitalEntidadExcepcion(pe);
+        } catch (Exception e) {
+            throw new SiCapitalEntidadExcepcion(ErrorEnum.SYSx001, e);
+        }
+         return null;
+     }
 }

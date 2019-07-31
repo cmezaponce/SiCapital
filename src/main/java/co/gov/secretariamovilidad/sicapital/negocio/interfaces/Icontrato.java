@@ -24,5 +24,7 @@ public interface Icontrato {
     
     void crearCoEntidades(CoEntidadesIas coEntidadesIas)throws SiCapitalNegocioExcepcion;
     
+    CoEntidadesIas retornaCoEntidadesIasPorId(int id) throws SiCapitalNegocioExcepcion;
+    
     void removerCoEntidades(CoEntidadesIas coEntidadesIas)throws SiCapitalNegocioExcepcion;
 }
