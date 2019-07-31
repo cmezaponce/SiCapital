@@ -39,7 +39,7 @@
                     <h:outputText  value="#{entidades.descripcion}"/>
                 </p:column>
                 <p:column headerText="acciones">
-                    <p:commandButton value="Del" actionListener="#{controladorArqitectura.eliminarEntidad}" update="@form">
+                    <p:commandButton value="Borrar" actionListener="#{controladorArqitectura.eliminarEntidad}" update="@form">
                         <f:setPropertyActionListener target="#{controladorArqitectura.coEntidadesIasEliminar}" value="#{entidades}"/>
                     </p:commandButton>
                 </p:column>
