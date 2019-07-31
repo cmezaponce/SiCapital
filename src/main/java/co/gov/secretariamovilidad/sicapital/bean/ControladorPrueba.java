@@ -42,6 +42,9 @@ public class ControladorPrueba extends AbstractMB{
      */
     private String texto;
     private String message;
+    private String saveMessage;
+
+
     private List <CoEntidadesIas> listaCoEntidades;
     private CoEntidadesIas coEntidadesIas;
     private CoEntidadesIas coEntidadesIasEliminar;
@@ -114,6 +117,12 @@ public class ControladorPrueba extends AbstractMB{
     public void setCoEntidadesIasEliminar(CoEntidadesIas coEntidadesIasEliminar) {
         this.coEntidadesIasEliminar = coEntidadesIasEliminar;
     }
-    
+        public String getSaveMessage() {
+        return saveMessage;
+    }
+
+    public void setSaveMessage(String saveMessage) {
+        this.saveMessage = saveMessage;
+    }
     
 }
