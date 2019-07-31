@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view contentType="text/html">
+    <h:head>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+	<title>SI CAPITA</title>
+        <link type="text/css" rel="stylesheet"
+	href="#{facesContext.externalContext.requestContextPath}/resource/css/estilos.css" />
+        <script type="text/javascript" charset="UTF-8"
+	src="#{facesContext.externalContext.requestContextPath}/js/funciones.js?v=1.0.0.16" />
+        <style type="text/css">
+            
+        </style>
+    </h:head>
+<h:body>
+    <!-- La clase ui-fluid hace que la pagina se comporte de modo responsive -->
+    <div id="principal" class="ui-fluid">
+        <!-- ENCABEZADO DE PAGINA -->
+        <ui:include src="/plantillas/encabezadoPagina.xhtml" />
+        <!-- CONTENIDO PRINCIPAL -->
+        <ui:insert name="content" id="otro"></ui:insert>
+        <!-- PIE DE PAGINA -->
+        <ui:include src="/plantillas/piePagina.xhtml" />
+    </div>
+</h:body>
+</f:view>
+</html>

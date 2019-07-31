@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+<ui:composition template="/template.xhtml">
+    <ui:define name="content">
+        <h:form prependId="false" id="frmPrincipal">
+            <p:growl id="growl" showDetail="true" sticky="true" />  
+            <h:panelGrid columns="4">
+                <p:outputLabel for="calendar" value="#{vista['general_caja_calendar']}"/>
+                <p:calendar id="calendar"/>
+                <p:outputLabel for="codigo" value="codigo"/>
+                <p:inputText id="codigo" value="#{controladorArqitectura.coEntidadesIas.codigo}"/>
+                <p:outputLabel for="descripcion" value="descripcion"/>
+                <p:inputText id="descripcion" value="#{controladorArqitectura.coEntidadesIas.descripcion}"/>
+                <p:outputLabel for="ac" value="#{vista['general_auto_completar']}"/>
+                <p:autoComplete id="ac" />
+                <p:outputLabel for="mask" value="Mask"/>
+                <p:inputMask id="mask" mask="99/99/9999"/>
+                <p:outputLabel for="pwd" value="#{vista['general_password']}"/>
+                <p:password id="pwd" />
+                <p:outputLabel for="keyboard" value="Keyboard"/>
+                <p:keyboard id="keyboard" />
+                <p:outputLabel for="area" value="#{vista['general_text_area']}"/>
+                <p:inputTextarea id="area"/>
+                <p:commandButton value="Enviar" actionListener="#{controladorArqitectura.saveMessage}" update="@form" />
+            </h:panelGrid>
+            <p:dataTable value="#{controladorArqitectura.listaCoEntidades}" 
+                         var="entidades" rows="5"
+                         paginator="true">
+                <p:column headerText="Codigo">
+                    <h:outputText  value="#{entidades.codigo}"/>
+                </p:column>
+                <p:column headerText="Descripcion">
+                    <h:outputText  value="#{entidades.descripcion}"/>
+                </p:column>
+                <p:column headerText="acciones">
+                    <p:commandButton value="Del" actionListener="#{controladorArqitectura.eliminarEntidad}" update="@form">
+                        <f:setPropertyActionListener target="#{controladorArqitectura.coEntidadesIasEliminar}" value="#{entidades}"/>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>      
+    </ui:define>
+</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,21 @@
+/* 
+    Created on : 27/07/2019, 09:15:37 PM
+    Author     : maikol
+*/
+/* estilo importante pora el resposive de la pagina */
+.ui-orderlist .ui-orderlist-list {
+    height: auto;
+}
+
+body {
+    background: white;
+}
+#frmPrincipal {
+    margin: 0 auto;
+    border: 1px solid black;
+    width: 80%;
+    padding: 2px;
+}
+#otro{
+    background: blue;
+}

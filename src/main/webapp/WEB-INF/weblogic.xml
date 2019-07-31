@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app">
+  <jsp-descriptor>
+    <keepgenerated>true</keepgenerated>
+    <debug>true</debug>
+  </jsp-descriptor>
+  <container-descriptor>
+    <show-archived-real-path-enabled>true</show-archived-real-path-enabled>
+  </container-descriptor>
+  <context-root>/siCapital</context-root>
+</weblogic-web-app>
