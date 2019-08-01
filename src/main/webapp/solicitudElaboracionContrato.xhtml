@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+<ui:composition template="/template.xhtml">
+    <ui:define name="content">
+        <h:form prependId="false" id="frmPrincipal">
+             
+            <p:panel id="panelPrincipal" header="#{vistaElaboracionContrato['general_label_solicitud_elaboracion_contrato']}">
+                <p:growl id="growl" showDetail="true" sticky="true" /> 
+                               
+                <h:panelGrid columns="5" id="panelGridDatosBasico" class="panelGridSiCapital">
+                        
+                        <p:outputLabel for="valorContratacion" value="#{vistaElaboracionContrato['general_label_valor_contratacion']}" />
+                        <p:inputText id="valorContratacion" value="#{controladorElabContrato.valor}"/>
+                        <p:commandButton value="#{vistaElaboracionContrato['general_boton_borrar_proveedor']}" />
+                        <p:commandButton value="#{vistaElaboracionContrato['general_boton_crear_proveedor']}" />
+                        <p:inputText id="fechaValorContratacion" disabled="true" value="31-07-2019"/>
+                    
+                        <p:outputLabel for="proveedor" value="#{vistaElaboracionContrato['general_label_proveedor']}" />
+                        <p:inputText id="proveedor" disabled="true" value="JUAN CARLOS MOTIVAR QUINTANA"/>
+                        <p:outputLabel for="identificacion" value="#{vistaElaboracionContrato['general_label_identificacion']}" />
+                        <p:inputText id="identificacion" disabled="true" value="80904038"/>
+                        <p:commandButton value="#{vistaElaboracionContrato['general_boton_seleccionar_proveedor']}" />
+                    
+                        <p:outputLabel for="consultaSince" value="#{vistaElaboracionContrato['general_label_consulta_since']}" />
+                        <p:inputText id="consultaSince" value="3453"/>
+                        <p:outputLabel for="dependenciaSolicitud" value="#{vistaElaboracionContrato['general_label_dependencia_solicitud']}" />
+                        <p:inputText id="dependenciaSolicitud" value="0373"/>
+                        <p:inputText id="dependenciaSolicitudDos" value="DIRECCION DE PROCESOS ADMINISTRATIVOS"/>
+                </h:panelGrid>
+                <p:commandButton value="Enviar" 
+                             id="btnEnviar" 
+                             process="@all" style="width: 20%"
+                             action="#{controladorElabContrato.salvar}" 
+                             update="frmPrincipal"/>
+            </p:panel>
+            
+             <!-- TAB PRINCIPAL -->
+            <p:tabView id="tabPrincipalElaboracionContrato">
+                <!-- TAB INTERVENTOR -->
+                <p:tab title="#{vistaElaboracionContrato['general_tab_interventor']}" id="tabInterventor">
+                    <h:panelGrid columns="3" id="panelGridDatosBasicoTabInterventor" style="width: 70%">
+                        <p:outputLabel for="tipoInterventor" value="#{vistaElaboracionContrato['general_label_tipo_interventor']}" />
+                        <p:selectOneMenu id="tipoInterventor">
+                            <f:selectItem itemLabel="Funcionario" itemValue="" />
+                        </p:selectOneMenu>
+                        <p:outputLabel value="" />
+                        
+                        <p:outputLabel for="cargoInterventor" value="#{vistaElaboracionContrato['general_label_cargo_interventor']}" />
+                        <p:inputText id="cargoInterventor" value="740" style="width:100%;"/>
+                        <p:inputText id="cargoInterventorOculto" value="SUBDIRECTOR TÉCNICO" />
+                        
+                        <p:outputLabel for="cedulaInterventor" value="#{vistaElaboracionContrato['general_label_cedula_interventor']}" />
+                        <p:inputText id="cedulaInterventor" value="51827099" style="text-align: right;" />
+                        <p:outputLabel value="" />
+                        
+                        <p:outputLabel for="nombreInterventor" value="#{vistaElaboracionContrato['general_label_nombre_interventor']}" />
+                        <p:inputText id="nombreInterventor" value="51827099" style="text-align: right;" />
+                        <p:outputLabel value="" />
+                    </h:panelGrid>
+                </p:tab>
+                <!-- TAB CDP -->
+                <p:tab title="#{vistaElaboracionContrato['general_tab_cdp']}" id="tabCdp">
+                    <ui:repeat value="#{controladorElabContrato.listaPestCdp}" var="cdp" id="datosDelCdp">
+                       <h:panelGrid columns="8" class="panelGridSiCapital">
+                          <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_cdp_no']}"/>
+                            <p:inputText value="#{cdp.codigoCdp}" />
+                            <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_ue']}"/>
+                            <p:inputText value="#{cdp.ue}" />
+                            <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_valor']}"/>
+                            <p:inputText value="#{cdp.valor}" />
+                            <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_fecha']}"/>
+                            <p:calendar value="#{cdp.fecha}" pattern="dd/MM/yyyy" showOn="button"/>
+                        </h:panelGrid>
+                    </ui:repeat>
+                </p:tab>
+            </p:tabView>
+        </h:form>      
+    </ui:define>
+</ui:composition>
+</h:body>
+</html>
