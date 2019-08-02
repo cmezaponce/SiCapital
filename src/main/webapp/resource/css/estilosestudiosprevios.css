@@ -1,7 +1,7 @@
 
 #estudiosprevios{
     margin: 0 auto;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     width: 80%;
     padding: 2px;
 }
@@ -36,3 +36,39 @@
     background: #efefef;
     border-radius: 4px;
 }
+
+.celda{
+    width: 100%;
+}
+
+.topLogin{
+    padding: 30px 20px
+}
+
+
+
+
+
+/* Grid Layout*/
+.ui-g div {
+    background-color: #ededed;
+    text-align: center;
+    border: 1px solid #fafafa;
+}
+
+.ui-outputlabel {
+    font-weight: bold;
+}
+
+.ui-orderlist .ui-orderlist-list {
+    height: auto;
+}
+
+.ui-outputlabel {
+    font-weight: bold;
+}
+
+.ui-orderlist .ui-orderlist-list {
+    height: auto;
+}
+
