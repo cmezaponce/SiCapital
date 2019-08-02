@@ -10,314 +10,273 @@
             <ui:define name="title">Estudios previos</ui:define>
             <ui:define name="content">
                 <h:form prependId="false" id="estudiosprevios"  >
-
+            <div class="ui-fluid">
+                <div class="topLogin">
                     <p:growl id="growl" showDetail="true" sticky="true" />  
 
-                    <p:commandButton value="#{estudiosprevios['estprev_nuevo']}"  />
-                    <p:commandButton value="#{estudiosprevios['estprev_consultar']}"  />
 
-                    <h:panelGrid columns="3">
+                    <p:panelGrid  columnClasses="ui-g-12 ui-md-3,ui-g-12 ui-md-3,ui-g-12 ui-md-3,ui-g-12 ui-md-3" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" columns="4" >
+                        <p:spacer />
+                        <p:spacer />
+                        <p:commandButton value="#{estudiosprevios['estprev_nuevo']}"  />
+                        <p:commandButton value="#{estudiosprevios['estprev_consultar']}"  />
+                    </p:panelGrid>
+                    <h:panelGrid style="width:100%" columns="3"  cellpadding="5" >
                         <p:outputLabel for="linea" value="#{estudiosprevios['estprev_linea']}"/>
-                        <p:inputText id="linea" value="" style="width: 100%;" placeholder="#{estudiosprevios['estprev_linea']}"/>
-                        <br /><br />
+                        <p:inputText id="linea" value=""  placeholder="#{estudiosprevios['estprev_linea']}"/>
+                        <p:commandButton value="#{estudiosprevios['estprev_buscar']}"  />
+                    </h:panelGrid>  
+                    <h:panelGrid style="width:100%" columns="2"  cellpadding="5" >   
                         <p:outputLabel for="modalidad" value="#{estudiosprevios['estprev_modalidad']}"/>
                         <p:selectOneMenu id="modalidad" value=""> 
                             <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                           <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
                         </p:selectOneMenu>
-                        <br /><br />
+                    </h:panelGrid>  
+                    <h:panelGrid style="width:100%" columns="4"  cellpadding="5">   
                         <p:outputLabel for="sisco" value="#{estudiosprevios['estprev_sisco']}"/>
-                        <p:inputText id="sisco" value="" style="width: 100%;" placeholder="#{estudiosprevios['estprev_sisco']}"/>
-                        <br /><br />
+                        <p:inputText id="sisco" value=""  placeholder="#{estudiosprevios['estprev_sisco']}"/>
+
 
                         <p:outputLabel for="vigencia" value="#{estudiosprevios['estprev_vigencia']}"/>
-                        <p:inputText id="vigencia" value="" style="width: 100%;" placeholder="#{estudiosprevios['estprev_vigencia']}"/>
-                        <br /><br />
+                        <p:inputText id="vigencia" value=""  placeholder="#{estudiosprevios['estprev_vigencia']}"/>
 
-                        <p:outputLabel for="estado" value="#{estudiosprevios['estprev_estado']}"/>   
+
+                        <p:outputLabel for="estado" value="#{estudiosprevios['estprev_estado']}"/> 
                         <p:selectOneMenu id="estado" value=""> 
                             <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                            <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
                         </p:selectOneMenu>
-                        <br /><br />
+                    </h:panelGrid>  
+                    <h:panelGrid style="width:100%" columns="2"  cellpadding="5">    
+
 
                         <p:outputLabel for="objeto" value="#{estudiosprevios['estprev_objeto']}"/>                                                   
                         <p:inputTextarea id="objeto" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_objeto']}" />
-                        <br /><br />
+                           
 
                         <p:commandButton value="#{estudiosprevios['estprev_buscar']}"  />
-                        <br /><br />
+                        <br />
+                        
                     </h:panelGrid>
 
 
                     <p:tabView>
-                                             
+
                         <p:tab title="#{estudiosprevios['estprev_pgeneral']}">
-                            <h:panelGrid columns="2" cellpadding="10">
+                            <h:panelGrid style="width:100%" columns="2" cellpadding="5">
                                 <p:outputLabel for="fechaelaboracion" value="#{estudiosprevios['estprev_felaboracion']}"/>
                                 <p:calendar id="fechaelaboracion" placeholder="#{estudiosprevios['estprev_felaboracion']}"/>
-                                <br /><br />
-                                
+
+
                                 <p:outputLabel for="unidad" value="#{estudiosprevios['estprev_unidad']}"/>
-                                <p:inputText id="unidad" value="" style="width: 100%;" placeholder="#{estudiosprevios['estprev_unidad']}"/>
-                                <br /><br />
-                                
+                                <p:inputText id="unidad" value=""  placeholder="#{estudiosprevios['estprev_unidad']}"/>
+
+
                                 <p:outputLabel for="direccion" value="#{estudiosprevios['estprev_direccion']}"/>
-                                <p:inputText id="direccion" value="" style="width: 100%;" placeholder="#{estudiosprevios['estprev_direccion']}"/>
-                                <br /><br />
-                                
+                                <p:inputText id="direccion" value=""  placeholder="#{estudiosprevios['estprev_direccion']}"/>
+
+
                                 <p:outputLabel for="director" value="#{estudiosprevios['estprev_director']}"/>
-                                <p:inputText id="director" value="" style="width: 100%;" placeholder="#{estudiosprevios['estprev_director']}"/>
-                                <br /><br />
+                                <p:inputText id="director" value=""  placeholder="#{estudiosprevios['estprev_director']}"/>
+                            </h:panelGrid>
+
+    
+                            <h4>#{estudiosprevios['estprev_detallesfuncionario']}</h4>
+                            <h:panelGrid style="width:100%" columns="4"  cellpadding="5">  
                                 
-                                <p:commandButton value="#{estudiosprevios['estprev_firmas']}"  />
-                                <br /><br />
+                                <p:outputLabel for="funcionario" value="#{estudiosprevios['estprev_funcionario']}"/> 
+                                <p:selectOneMenu id="funcionario" value=""> 
+                                    <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                   <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
+                                </p:selectOneMenu>
+                                
+                                <p:outputLabel for="companiafuncionario" value="#{estudiosprevios['estprev_companiafuncionario']}"/>
+                                <p:inputText id="companiafuncionario" value=""  placeholder="#{estudiosprevios['estprev_companiafuncionario']}"/>
 
-                                <p:commandButton value="#{estudiosprevios['estprev_ordenador']}"  />
-                                <br /><br />
 
-                                <p:commandButton value="#{estudiosprevios['estprev_replicar']}"  />
-                                <br /><br />
-                                 
-                                 <H4>Linea o renglón del plan</H4>
+                                <p:outputLabel for="cargofuncionario" value="#{estudiosprevios['estprev_cargofuncionario']}"/>
+                                <p:inputText id="cargofuncionario" value=""  placeholder="#{estudiosprevios['estprev_cargofuncionario']}"/>
+
+
+
+                            </h:panelGrid> 
+
+                            <h4>#{estudiosprevios['estprev_detallesordenador']}</h4>
+                            <h:panelGrid style="width:100%" columns="4"  cellpadding="5">  
+                                
+                                <p:outputLabel for="ordenador" value="#{estudiosprevios['estprev_ordenadorgasto']}"/> 
+                                <p:selectOneMenu id="ordenador" value=""> 
+                                    <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                   <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
+                                </p:selectOneMenu>
+                                
+                                <p:outputLabel for="companiaordenador" value="#{estudiosprevios['estprev_companiaordenador']}"/>
+                                <p:inputText id="companiaordenador" value=""  placeholder="#{estudiosprevios['estprev_companiaordenador']}"/>
+
+
+                                <p:outputLabel for="cargoordenador" value="#{estudiosprevios['estprev_cargoordenador']}"/>
+                                <p:inputText id="cargoordenador" value=""  placeholder="#{estudiosprevios['estprev_cargoordenador']}"/>
+
+
+
+                            </h:panelGrid> 
+                            
+                            <H4>Linea o renglón del plan</H4>
+                            <h:panelGrid style="width:100%" columns="2" cellpadding="5">
                                 <p:outputLabel for="direccion" value="#{estudiosprevios['estprev_renglon']}"/>
-                                 <p:selectOneMenu id="renglon" value=""> 
-                                     <f:selectItem itemLabel="Seleccione uno" itemValue="" />
-                                    <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
-                                 </p:selectOneMenu> 
-                                 
-                                <!--actionListener="#{controladorArqitectura.saveMessage} "  update="@form"-->
+                                <p:selectOneMenu id="renglon" value=""> 
+                                    <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                   <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
+                                </p:selectOneMenu> 
+
+
                             </h:panelGrid>
                         </p:tab>
-                        
+
                         <p:tab title="#{estudiosprevios['estprev_pconveniencia']}">
-                            <h:panelGrid columns="3" cellpadding="10">
+                            <h:panelGrid style="width:100%" columns="3" cellpadding="5">
                                 <p:outputLabel for="conveniencia" value="#{estudiosprevios['estprev_conveniencia']}"/>                                                   
                                 <p:inputTextarea id="conveniencia" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_conveniencia']}" />
                                 <br /><br /> 
-                                
-                                <p:outputLabel for="continuacion" value="#{estudiosprevios['estprev_continuacion']}"/>                                                   
-                                <p:inputTextarea id="continuacion" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_continuacion']}" />
-                                <br /><br /> 
+
+
                             </h:panelGrid>
                         </p:tab>
 
                         <p:tab title="#{estudiosprevios['estprev_pobjeto']}">
-                            <h:panelGrid columns="2" cellpadding="10">
+                            <h:panelGrid style="width:100%" columns="2" cellpadding="5">
                                 <p:outputLabel for="alcance" value="#{estudiosprevios['estprev_alcance']}"/>                                                   
                                 <p:inputTextarea id="alcance" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_alcance']}" />
-                                <br /><br />
-                                
+
+
                                 <p:commandButton value="#{estudiosprevios['estprev_bienes']}"  />
-                                <br /><br />
-                                
+                                <br />
+
                                 <p:outputLabel for="especificacion" value="#{estudiosprevios['estprev_especificacion']}"/>                                                   
                                 <p:inputTextarea id="especificacion" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_especificacion']}"  />
-                                <br /><br />
-                                
-                                <p:outputLabel for="otrosaspectos" value="#{estudiosprevios['estprev_otrosaspectos']}"/>                                                   
-                                <p:inputTextarea id="otrosaspectos" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_otrosaspectos']}" />
-                                <br /><br />
-                                
-                                <p:outputLabel for="nopluralidad" value="#{estudiosprevios['estprev_nopluralidad']}"/>                                                   
-                                <p:inputTextarea id="nopluralidad" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_nopluralidad']}" />
-                                <br /><br />                                
-                                                                
-                                
+
+
+
                             </h:panelGrid>
                         </p:tab>
-                        
+
                         <p:tab title="#{estudiosprevios['estprev_pcondiciones']}">
-                            
-                            <h:panelGrid columns="2" cellpadding="10">
+
+                            <h:panelGrid style="width:100%" columns="3" cellpadding="5">
                                 <p:outputLabel for="plazo" value="#{estudiosprevios['estprev_plazo']}"/>
-                                <p:inputText id="plazo" value="" style="width: 100%;" placeholder="#{estudiosprevios['estprev_plazo']}"/>
-                                <br /><br />
-
-
+                                <p:inputText id="plazo" value=""  placeholder="#{estudiosprevios['estprev_plazo']}"/>
                                 <p:selectOneMenu id="descripcionplazo" value=""> 
                                     <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                                    <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
                                 </p:selectOneMenu>
-                                <br /><br />
                                 
+                                <br />
+                                <p:inputText id="plazod" value=""  placeholder="#{estudiosprevios['estprev_plazo']}"/>
+                                <p:selectOneMenu id="descripcionplazod" value=""> 
+                                    <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                   <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
+                                </p:selectOneMenu>
+                            </h:panelGrid>
+
+                            <h:panelGrid style="width:100%" columns="2" cellpadding="5">
                                 <p:outputLabel for="observacionesplazo" value="#{estudiosprevios['estprev_observacionesplazo']}"/>                                                   
                                 <p:inputTextarea id="observacionesplazo" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_observacionesplazo']}"  />
-                                <br /><br />
-                                
-                                 <p:outputLabel for="valormensual" value="#{estudiosprevios['estprev_valormensual']}"/>
-                                <p:inputText id="valormensual" value="" style="width: 100%;"  placeholder="#{estudiosprevios['estprev_valormensual']}"/>
-                                #{estudiosprevios['estprev_textoadicional']}<br /><br />
-                                
-                                 <p:outputLabel for="presupuesto" value="#{estudiosprevios['estprev_presupuesto']}"/>
-                                <p:inputText id="presupuesto" value="" style="width: 100%;"  placeholder="#{estudiosprevios['estprev_presupuesto']}"/>
-                                <br /><br />
-                                
-                                
-                                <p:outputLabel for="calculopresupuesto" value="#{estudiosprevios['estprev_calculopresupuesto']}"/>                                                   
-                                <p:inputTextarea id="calculopresupuesto" rows="4" cols="50"  placeholder="#{estudiosprevios['estprev_calculopresupuesto']}"/>
-                                <br /><br />
-                                
-                                <p:outputLabel for="soportecalculo" value="#{estudiosprevios['estprev_soportecalculo']}"/>                                                   
-                                <p:inputTextarea id="soportecalculo" rows="4" cols="50"  placeholder="#{estudiosprevios['estprev_soportecalculo']}" />
-                                <br /><br />
-                                
-                                <p:outputLabel for="tipopropuestatecnica" value="#{estudiosprevios['estprev_tipopropuestatecnica']}"/>                                                   
-                                <p:inputTextarea id="tipopropuestatecnica" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_tipopropuestatecnica']}" />
-                                <br /><br />
-                                
+
+                            </h:panelGrid>
+                            <h:panelGrid style="width:100%" columns="3" cellpadding="5">
+                                <p:outputLabel for="valormensual" value="#{estudiosprevios['estprev_valormensual']}"/>
+                                <p:inputText id="valormensual" value=""   placeholder="#{estudiosprevios['estprev_valormensual']}"/>
+
+                                #{estudiosprevios['estprev_textoadicional']}
+
+                            </h:panelGrid>
+                            <h:panelGrid style="width:100%" columns="2" cellpadding="5">
+                                <p:outputLabel for="presupuesto" value="#{estudiosprevios['estprev_presupuesto']}"/>
+                                <p:inputText id="presupuesto" value=""   placeholder="#{estudiosprevios['estprev_presupuesto']}"/>
+
                                 <p:outputLabel for="formapago" value="#{estudiosprevios['estprev_formapago']}"/>                                                   
                                 <p:inputTextarea id="formapago" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_formapago']}" />
-                                <br /><br />
 
-                                <p:outputLabel for="sitioentrega" value="#{estudiosprevios['estprev_sitioentrega']}"/>                                                   
-                                <p:inputTextarea id="sitioentrega" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_sitioentrega']}" />
-                                <br /><br />
-                                
-                                <p:commandButton value="#{estudiosprevios['estprev_ejemplopagos']}"  />
-                                <br /><br />
-                                
-                                <p:commandButton value="#{estudiosprevios['estprev_factores']}"  />
-                                <br /><br />
-                                
-                                
+
                             </h:panelGrid>
                         </p:tab>
-                        
-                         <p:tab title="#{estudiosprevios['estprev_pobligaciones']}">
-                            <h:panelGrid columns="2" cellpadding="10">
+
+                        <p:tab title="#{estudiosprevios['estprev_pobligaciones']}">
+                            <h:panelGrid style="width:100%" columns="2" cellpadding="5">
                                 <p:outputLabel for="obligacionesContratista" value="#{estudiosprevios['estprev_obligacionesContratista']}"/>                                                   
                                 <p:inputTextarea id="obligacionesContratista" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_obligacionesContratista']}" />
-                                <br /><br />
-
-                                <p:outputLabel for="obligacionesSupervisor" value="#{estudiosprevios['estprev_obligacionesSupervisor']}"/>                                                   
-                                <p:inputTextarea id="obligacionesSupervisor" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_obligacionesSupervisor']}" />
-                                <br /><br />
-
-                                <p:outputLabel for="obligacionesInterventor" value="#{estudiosprevios['estprev_obligacionesInterventor']}"/>                                                   
-                                <p:inputTextarea id="obligacionesInterventor" rows="4" cols="50"  placeholder="#{estudiosprevios['estprev_obligacionesInterventor']}" />
-                                <br /><br />
 
                             </h:panelGrid>
                         </p:tab>
-                        
-                        <p:tab title="#{estudiosprevios['estprev_pproductos']}">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:outputLabel for="resultadoesperado" value="#{estudiosprevios['estprev_resultadoesperado']}"/>                                                   
-                                <p:inputTextarea id="resultadoesperado" rows="4" cols="50"  placeholder="#{estudiosprevios['estprev_resultadoesperado']}" />
-                                <br /><br />
 
-                                <p:outputLabel for="estprev_volumen" value="#{estudiosprevios['estprev_volumen']}"/>                                                   
-                                <p:inputTextarea id="estprev_volumen" rows="4" cols="50"  placeholder="#{estudiosprevios['estprev_volumen']}" />
-                                <br /><br />
-                            </h:panelGrid>    
-                        </p:tab>
-                        
+
                         <p:tab title="#{estudiosprevios['estprev_pgarantia']}">
-                            <h:panelGrid columns="2" cellpadding="10">
-                                   
-                                <h4>#{estudiosprevios['estprev_garantias']}</h4>
-                                
+                            <h4>#{estudiosprevios['estprev_garantias']}</h4>
+                            <h:panelGrid style="width:100%" columns="2" cellpadding="5">
+
                                 <p:outputLabel for="garantia" value="#{estudiosprevios['estprev_cgarantias']}"/>   
                                 <p:selectOneMenu id="garantia" value=""> 
                                     <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                                    <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
                                 </p:selectOneMenu>
-                                <br /><br />
-                                
+
+
                                 <p:outputLabel for="observacionesgarantia" value="#{estudiosprevios['estprev_observacionesgarantia']}"/>                                                   
                                 <p:inputTextarea id="observacionesgarantia" rows="4" cols="50"  placeholder="#{estudiosprevios['estprev_observacionesgarantia']}" />
-                                <br /><br />
-                              
-                                
-                                <h4>#{estudiosprevios['estprev_amparos']}</h4>
-                                
+
+                            </h:panelGrid>
+                            <h4>#{estudiosprevios['estprev_amparos']}</h4>
+                            <h:panelGrid style="width:100%" columns="2" cellpadding="5">
+
                                 <p:outputLabel for="amparo" value="#{estudiosprevios['estprev_amparo']}"/>   
                                 <p:selectOneMenu id="amparo" value=""> 
                                     <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                                    <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
                                 </p:selectOneMenu>
-                                <br /><br />
-                                
-                                 <p:outputLabel for="porcentaje" value="#{estudiosprevios['estprev_porcentaje']}"/>
-                                <p:inputText id="porcentaje" value="" style="width: 100%;"  placeholder="#{estudiosprevios['estprev_porcentaje']}"/>
-                                <br /><br />
-                                
+
+
+                                <p:outputLabel for="porcentaje" value="#{estudiosprevios['estprev_porcentaje']}"/>
+                                <p:inputText id="porcentaje" value=""   placeholder="#{estudiosprevios['estprev_porcentaje']}"/>
+
+
                                 <p:outputLabel for="base" value="#{estudiosprevios['estprev_base']}"/>   
                                 <p:selectOneMenu id="base" value=""> 
                                     <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                                    <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
                                 </p:selectOneMenu>
-                                <br /><br />
-                                
-                                 <p:outputLabel for="vigenciagarantia" value="#{estudiosprevios['estprev_vigenciagarantia']}"/>
-                                <p:inputText id="vigenciagarantia" value="" style="width: 100%;"/>
-                                <br /><br />
-                                
-                                 <p:outputLabel for="soporteriesgos" value="#{estudiosprevios['estprev_soporteriesgos']}"/>
-                                <p:inputText id="soporteriesgos" value="" style="width: 100%;"/>
-                                <br /><br />
-                                
-                                 <p:outputLabel for="exigenciasgarantia" value="#{estudiosprevios['estprev_exigenciasgarantia']}"/>
-                                <p:inputText id="exigenciasgarantia" value="" style="width: 100%;"  placeholder="#{estudiosprevios['estprev_exigenciasgarantia']}"/>
-                                <br /><br />
-                                
-                                 <p:outputLabel for="garantiasofrecimiento" value="#{estudiosprevios['estprev_garantiasofrecimiento']}"/>
-                                <p:inputText id="garantiasofrecimiento" value="" style="width: 100%;" placeholder="#{estudiosprevios['estprev_garantiasofrecimiento']}"/>
-                                <br /><br />
-                                
-                                 <p:outputLabel for="analisisgarantias" value="#{estudiosprevios['estprev_analisisgarantias']}"/>
-                                <p:inputText id="analisisgarantias" value="" style="width: 100%;"  placeholder="#{estudiosprevios['estprev_analisisgarantias']}"/>
-                                <br /><br />
-                                
-                                 <p:outputLabel for="pertinenciagarantias" value="#{estudiosprevios['estprev_pertinenciagarantias']}"/>
-                                <p:inputText id="pertinenciagarantias" value="" style="width: 100%;"  placeholder="#{estudiosprevios['estprev_pertinenciagarantias']}"/>
-                                <br /><br />
-                                
-                                 <p:outputLabel for="documentogarantiaso" value="#{estudiosprevios['estprev_documentogarantiaso']}"/>
-                                <p:inputText id="documentogarantiaso" value="" style="width: 100%;"  placeholder="#{estudiosprevios['estprev_documentogarantiaso']}"/>
-                                <br /><br />
-                                
-                                
-                                
-                                
-                                
+
+
+                                <p:outputLabel for="vigenciagarantia" value="#{estudiosprevios['estprev_vigenciagarantia']}"/>
+                                <p:inputText id="vigenciagarantia" value="" />
+
+
+ 
+
+
                             </h:panelGrid>
                         </p:tab>
-                        
+
 
                     </p:tabView>
-                    
-                    
-                    
-                    <br /><br />
-                    
-                    <p:commandButton value="#{estudiosprevios['estprev_guardar']}"  />
-                                <br /><br />
-                    
-                    <div class="p-grid nested-grid">
-                        <div class="p-col-8">
-                            <div class="p-grid">
-                                <div class="p-col-6">
-                                    <div class="box">6</div>
-                                </div>
-                                <div class="p-col-6">
-                                    <div class="box">6</div>
-                                </div>
-                                <div class="p-col-12">
-                                    <div class="box">12</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-col-4">
-                            <div class="box box-stretched">4</div>
-                        </div>
-                    </div>
-                    
-                    
-                    
 
-                </h:form>      
+
+                    <h:panelGrid style="width:100%" columns="5" cellpadding="5">
+                        &#160;
+                        <br />
+                        <p:commandButton value="#{estudiosprevios['estprev_guardar']}" icon="pi pi-save" />
+                        
+                        <br />
+                        &#160;
+                    </h:panelGrid>
+
+
+
+                </div>
+            </div>
+            </h:form> 
+
+
+
             </ui:define>
         </ui:composition>
     </h:body>
