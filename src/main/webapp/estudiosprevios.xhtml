@@ -15,51 +15,73 @@
                     <p:growl id="growl" showDetail="true" sticky="true" />  
 
 
-                    <p:panelGrid  columnClasses="ui-g-12 ui-md-3,ui-g-12 ui-md-3,ui-g-12 ui-md-3,ui-g-12 ui-md-3" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" columns="4" >
+                    <p:panelGrid  columnClasses="ui-g-1 ui-md-3,ui-g-1 ui-md-3,ui-g-6 ui-md-3,ui-g-6 ui-md-3" layout="grid" styleClass="ui-panelgrid-blank ui-fluid" columns="4" >
                         <p:spacer />
                         <p:spacer />
                         <p:commandButton value="#{estudiosprevios['estprev_nuevo']}"  />
                         <p:commandButton value="#{estudiosprevios['estprev_consultar']}"  />
                     </p:panelGrid>
-                    <h:panelGrid style="width:100%" columns="3"  cellpadding="5" >
-                        <p:outputLabel for="linea" value="#{estudiosprevios['estprev_linea']}"/>
+                    
+                    <p:panelGrid columns="4"   columnClasses="ui-g-12 ui-md-3,ui-g-12 ui-md-4,ui-g-12 ui-md-3,ui-g-12 ui-md-3" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"  >
+                        <p:outputLabel for="linea" value="#{estudiosprevios['estprev_linea']}   "/>
                         <p:inputText id="linea" value=""  placeholder="#{estudiosprevios['estprev_linea']}"/>
-                        <p:commandButton value="#{estudiosprevios['estprev_buscar']}"  />
-                    </h:panelGrid>  
-                    <h:panelGrid style="width:100%" columns="2"  cellpadding="5" >   
+                        <p:commandButton value="#{estudiosprevios['estprev_buscar']}" onclick=""  />
+                        <p:spacer />
+                    </p:panelGrid>
+                    
+                    <p:panelGrid columns="3"   columnClasses="ui-g-12 ui-md-3,ui-g-12 ui-md-7,ui-g-12 ui-md-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"  >
+
                         <p:outputLabel for="modalidad" value="#{estudiosprevios['estprev_modalidad']}"/>
                         <p:selectOneMenu id="modalidad" value=""> 
                             <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                         </p:selectOneMenu>
-                    </h:panelGrid>  
-                    <h:panelGrid style="width:100%" columns="4"  cellpadding="5">   
+                        <p:spacer />
+                    </p:panelGrid>  
+
+                    <p:panelGrid columns="4"   columnClasses="ui-g-12 ui-md-3,ui-g-12 ui-md-3,ui-g-12 ui-md-3,ui-g-12 ui-md-3" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"  >
                         <p:outputLabel for="sisco" value="#{estudiosprevios['estprev_sisco']}"/>
                         <p:inputText id="sisco" value=""  placeholder="#{estudiosprevios['estprev_sisco']}"/>
 
 
                         <p:outputLabel for="vigencia" value="#{estudiosprevios['estprev_vigencia']}"/>
                         <p:inputText id="vigencia" value=""  placeholder="#{estudiosprevios['estprev_vigencia']}"/>
+                    </p:panelGrid>
+                    
+                     <p:panelGrid columns="3"   columnClasses="ui-g-12 ui-md-3,ui-g-12 ui-md-7,ui-g-12 ui-md-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"  >
+
 
 
                         <p:outputLabel for="estado" value="#{estudiosprevios['estprev_estado']}"/> 
                         <p:selectOneMenu id="estado" value=""> 
                             <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                            <f:selectItem itemLabel="ELABORACIÓN" itemValue="1" />
+                            <f:selectItem itemLabel="ANULADO" itemValue="2" />
+                            <f:selectItem itemLabel="APROBADO" itemValue="3" />
+                            
+                            
                            <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
                         </p:selectOneMenu>
-                    </h:panelGrid>  
-                    <h:panelGrid style="width:100%" columns="2"  cellpadding="5">    
+                        <p:spacer />
+                    </p:panelGrid>  
+                     <p:panelGrid columns="3"   columnClasses="ui-g-12 ui-md-3,ui-g-12 ui-md-7,ui-g-12 ui-md-2" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"  >
+    
 
 
                         <p:outputLabel for="objeto" value="#{estudiosprevios['estprev_objeto']}"/>                                                   
                         <p:inputTextarea id="objeto" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_objeto']}" />
-                           
+                         <p:spacer />  
+
+                        
+
+                        
+                    </p:panelGrid>
+                    
+                    <p:panelGrid columns="2"   columnClasses="ui-g-12 ui-md-6,ui-g-12 ui-md-6" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"  >
 
                         <p:commandButton value="#{estudiosprevios['estprev_buscar']}"  />
-                        <br />
-                        
-                    </h:panelGrid>
-
-
+                        <p:spacer /> 
+                    </p:panelGrid>
+                    
                     <p:tabView>
 
                         <p:tab title="#{estudiosprevios['estprev_pgeneral']}">
@@ -113,11 +135,8 @@
                                 <p:outputLabel for="companiaordenador" value="#{estudiosprevios['estprev_companiaordenador']}"/>
                                 <p:inputText id="companiaordenador" value=""  placeholder="#{estudiosprevios['estprev_companiaordenador']}"/>
 
-
                                 <p:outputLabel for="cargoordenador" value="#{estudiosprevios['estprev_cargoordenador']}"/>
                                 <p:inputText id="cargoordenador" value=""  placeholder="#{estudiosprevios['estprev_cargoordenador']}"/>
-
-
 
                             </h:panelGrid> 
                             
@@ -147,16 +166,46 @@
                             <h:panelGrid style="width:100%" columns="2" cellpadding="5">
                                 <p:outputLabel for="alcance" value="#{estudiosprevios['estprev_alcance']}"/>                                                   
                                 <p:inputTextarea id="alcance" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_alcance']}" />
-
-
-                                <p:commandButton value="#{estudiosprevios['estprev_bienes']}"  />
-                                <br />
-
+                                
                                 <p:outputLabel for="especificacion" value="#{estudiosprevios['estprev_especificacion']}"/>                                                   
                                 <p:inputTextarea id="especificacion" rows="4" cols="50" placeholder="#{estudiosprevios['estprev_especificacion']}"  />
 
+                                 <p:commandButton icon="ui-icon-plus" value="#{estudiosprevios['adicionarbien']}" actionListener="#{manejador.agregarParametro}">
+                                    <f:ajax render="estudiosprevios" execute="@form" />
+                                </p:commandButton>
+
+                                 <p:spacer />
+                                <h:dataTable value="#{manejador.listaBienes}" var="bienes" id="tablaBienes">
+                                    <p:outputLabel for="tipobien" value="#{estudiosprevios['estprev_tipobien']}"/>
+                                    <p:selectOneMenu id="tipobien" value=""> 
+                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                        <f:selectItem itemLabel="Servicios" itemValue="1" />
+                                        <f:selectItem itemLabel="Elementos de consumo" itemValue="2" />
+                                        <f:selectItem itemLabel="Elementos devolutivos" itemValue="3" />
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel for="elemento" value="#{estudiosprevios['estprev_elemento']}"/>
+                                    <p:selectOneMenu id="elemento" value=""> 
+                                        <f:selectItem itemLabel="Seleccione uno" itemValue="" />
+                                       <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
+                                    </p:selectOneMenu>
+
+                                    <p:outputLabel for="unidadmedida" value="#{estudiosprevios['estprev_unidadmedida']}"/>
+                                    <p:inputText id="unidadmedida" value=""  placeholder="#{estudiosprevios['estprev_unidadmedida']}"/>
 
 
+                                     <p:spacer />
+                                    <p:selectBooleanCheckbox value="#{estudiosprevios['estprev_mvu']}" itemLabel="MVU"/>
+
+
+                                    <p:outputLabel for="cantidad" value="#{estudiosprevios['estprev_cantidadaprobada']}"/>
+                                    <p:inputText id="cantidad" value=""  placeholder="#{estudiosprevios['estprev_cantidadaprobada']}"/>
+
+
+                                    <p:outputLabel for="valor" value="#{estudiosprevios['estprev_valorunitario']}"/>
+                                    <p:inputText id="valor" value=""  placeholder="#{estudiosprevios['estprev_valorunitario']}"/>
+                                
+                                </h:dataTable>
                             </h:panelGrid>
                         </p:tab>
 
@@ -238,36 +287,27 @@
                                 <p:outputLabel for="porcentaje" value="#{estudiosprevios['estprev_porcentaje']}"/>
                                 <p:inputText id="porcentaje" value=""   placeholder="#{estudiosprevios['estprev_porcentaje']}"/>
 
-
                                 <p:outputLabel for="base" value="#{estudiosprevios['estprev_base']}"/>   
                                 <p:selectOneMenu id="base" value=""> 
                                     <f:selectItem itemLabel="Seleccione uno" itemValue="" />
                                    <!-- <f:selectItems value="#{selectOneMenuView.cities}" />-->
                                 </p:selectOneMenu>
 
-
                                 <p:outputLabel for="vigenciagarantia" value="#{estudiosprevios['estprev_vigenciagarantia']}"/>
                                 <p:inputText id="vigenciagarantia" value="" />
-
-
- 
-
 
                             </h:panelGrid>
                         </p:tab>
 
-
                     </p:tabView>
 
 
-                    <h:panelGrid style="width:100%" columns="5" cellpadding="5">
-                        &#160;
-                        <br />
-                        <p:commandButton value="#{estudiosprevios['estprev_guardar']}" icon="pi pi-save" />
-                        
-                        <br />
-                        &#160;
-                    </h:panelGrid>
+                    <p:panelGrid columns="3" columnClasses="ui-g-1 ui-md-4,ui-g-10 ui-md-4,ui-g-1 ui-md-4" layout="grid" styleClass="ui-panelgrid-blank ui-fluid"  >
+                         <p:spacer />
+                        <p:commandButton value="#{estudiosprevios['estprev_guardar']}" icon="ui-icon-disk" />
+                         <p:spacer />                          
+                         
+                    </p:panelGrid>
 
 
 
