@@ -21,5 +21,9 @@
                     <base-name>co.gov.secretariamovilidad.sicapital.estudiosprevios</base-name>
 			<var>estudiosprevios</var>
                 </resource-bundle>
+                <resource-bundle>
+                    <base-name>co.gov.secretariamovilidad.sicapital.login</base-name>
+			<var>login</var>
+                </resource-bundle>
 	</application>
 </faces-config>
