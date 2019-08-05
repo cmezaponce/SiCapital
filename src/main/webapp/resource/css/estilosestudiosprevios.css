@@ -45,8 +45,13 @@
     padding: 30px 20px
 }
 
+.ui-grid-row{
+padding: 4px;    
+}
 
-
+html{
+    font-size: 13px;
+}
 
 
 /* Grid Layout*/
