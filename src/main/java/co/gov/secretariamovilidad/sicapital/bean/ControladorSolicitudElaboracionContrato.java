@@ -44,21 +44,17 @@ public class ControladorSolicitudElaboracionContrato extends AbstractMB implemen
     @PostConstruct
     @Override
     public void init() {
-        System.out.println("Ingresa c");
-        System.out.println("Ingresa");
         aplicacionBundle = ResourceBundleUtil.getAplicacionBundle();
         listaPestCdp = new ArrayList<CdpDto>();
         for(int i = 0; i< 5; i++){
             CdpDto cdpDto = new CdpDto(1,0,new Date(),1000);
             listaPestCdp.add(cdpDto);
         }
-        System.out.println("tam"+listaPestCdp.size());
     }
 
     public void salvar() {
-        System.out.println("ingresa salvar");
         FacesContext context = FacesContext.getCurrentInstance();
-        SesionUtil.getInstance().addError(valor);
+        SesionUtil.getInstance().addInfo(valor);
         valor = "";
     }
     

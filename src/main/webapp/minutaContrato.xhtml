@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:sicapital="http://sicapital.com/facelets">
+<h:body>
+<ui:composition template="/template.xhtml">
+    <ui:define name="content">
+        <h:form prependId="false" id="frmMinutaContrato">             
+            <p:panel id="panelPrincipal" header="#{vistaMinutaContrato['general_titulo_minuta_contrato']}">
+                <p:growl id="growl" showDetail="true" sticky="true" /> 
+                <!-- PANEL CABECERA -->              
+                <h:panelGroup>
+                    <p:panelGrid columns="6" styleClass="panelGridSiCapital" layout="grid">
+                         <p:outputLabel for="numeroSisco" value="#{vistaMinutaContrato['general_label_numero_sisco']}" />
+                         <p:selectOneMenu id="numeroSisco">
+                             <f:selectItem itemLabel="Eleccion 1" itemValue="Eleccion 1" />
+                         </p:selectOneMenu>
+                         <p:outputLabel for="planDeContratacion" value="#{vistaMinutaContrato['general_label_plan_contratacion']}" />
+                         <p:inputText id="planDeContratacion"  />
+                         <p:outputLabel for="modalidad" value="#{vistaMinutaContrato['general_label_modalidad']}" />
+                         <p:selectOneMenu id="modalidad">
+                             <f:selectItem itemLabel="modalidad" itemValue="modalidad" />
+                         </p:selectOneMenu>
+                         
+                         <p:outputLabel for="claseDeContratos" value="#{vistaMinutaContrato['general_label_clase_contratos']}" />
+                         <p:selectOneMenu id="claseDeContratos">
+                             <f:selectItem itemLabel="claseDeContratos" itemValue="claseDeContratos" />
+                         </p:selectOneMenu>
+                         
+                         <p:outputLabel for="valorContrato" value="#{vistaMinutaContrato['general_label_valor_contrato']}" />
+                         <p:inputText id="valorContrato"  placeholder="$"/>
+                         
+                         <p:outputLabel for="valorFormaPago" value="#{vistaMinutaContrato['general_label_valor_forma_pago']}" />
+                         <p:selectOneMenu id="valorFormaPago">
+                             <f:selectItem itemLabel="forma pago" itemValue="forma pago" />
+                         </p:selectOneMenu>
+                    </p:panelGrid>
+                    
+                    <p:panelGrid columns="1" styleClass="panelGridSiCapital" layout="grid">
+                        <p:outputLabel for="objeto" value="#{vistaMinutaContrato['general_label_valor_objeto']}" />
+                        <p:inputTextarea id="objeto" cols="4" rows="4"/>
+                    </p:panelGrid>
+                    
+                    <p:panelGrid columns="4" styleClass="panelGridSiCapital" layout="grid">
+                        <p:outputLabel for="plazoMeses" value="#{vistaMinutaContrato['general_label_plazo_meses']}" />
+                        <p:inputText id="plazoMeses" />
+                        <p:outputLabel for="plazoDias" value="#{vistaMinutaContrato['general_label_plazo_dias']}" />
+                        <p:inputText id="plazoDias" />
+                    </p:panelGrid>
+                    <!-- PROVEEDOR -->
+                    <p:fieldset legend="#{vistaMinutaContrato['general_tab_proveedor']}" 
+                                toggleable="true" id="fieldsetProveedor" collapsed="true"
+                                toggleSpeed="500">                        
+                        <p:panelGrid columns="1" styleClass="panelGridSiCapital" layout="grid">                            
+                            <p:panelGrid columns="8" styleClass="panelGridSiCapital" layout="grid">
+                                <sicapital:tagInputText tagId="primerNombre" 
+                                                        tagLabel="#{vistaMinutaContrato['general_label_primer_nombre']}"/>
+                                <sicapital:tagInputText tagId="segundoNombre" 
+                                                        tagLabel="#{vistaMinutaContrato['general_label_segundo_nombre']}"/>
+                                <sicapital:tagInputText tagId="primerApellido" 
+                                                        tagLabel="#{vistaMinutaContrato['general_label_primer_apellido']}"/>               
+                                <sicapital:tagInputText tagId="segundoApellido" 
+                                                        tagLabel="#{vistaMinutaContrato['general_label_segundo_apellido']}"/>                                
+                            </p:panelGrid>
+                            <p:panelGrid columns="8" styleClass="panelGridSiCapital" layout="grid">
+                                <sicapital:tagSelectOneMenu tagValue="cc" 
+                                                            tagId="tipoDocumento" 
+                                                            tagLabel="#{vistaMinutaContrato['general_label_tipo_documento']}" /> 
+                                <sicapital:tagInputText tagId="numero" 
+                                                        tagLabel="#{vistaMinutaContrato['general_label_numero']}"/>
+                                <sicapital:tagInputText tagId="dv" 
+                                                        tagValue="#{controladorMinutaContrato.valor}"
+                                                        tagLabel="#{vistaMinutaContrato['general_label_dv']}" />
+                            </p:panelGrid>
+                            <p:panelGrid columns="10" styleClass="panelGridSiCapital" layout="grid"> 
+                                <sicapital:tagSelectOneMenu tagId="naturaleza"
+                                                            tagValue="naturaleza" 
+                                                            tagLabel="#{vistaMinutaContrato['general_label_naturaleza']}" 
+                                                            tagRequired="true" />
+                                <sicapital:tagSelectOneMenu tagId="nacionalidad"
+                                                            tagValue="nacionalidad"                                                              
+                                                            tagLabel="#{vistaMinutaContrato['general_label_nacionalidad']}" 
+                                                            tagRequired="true" />
+                                <sicapital:tagSelectOneMenu tagId="genero"
+                                                            tagValue="genero" 
+                                                            tagLabel="#{vistaMinutaContrato['general_label_genero']}" 
+                                                            tagRequired="true" />
+                                <sicapital:tagInputText tagId="representanteLegal" 
+                                                        tagLabel="#{vistaMinutaContrato['general_label_representante_legal']}" />
+                                <sicapital:tagSelectOneMenu tagId="tipoProveedor"
+                                                            tagValue="Sociedad anonima"  
+                                                            tagLabel="#{vistaMinutaContrato['general_label_tipo_proveedor']}" 
+                                                            tagRequired="true" />
+                               
+                            </p:panelGrid>
+                            
+                            <h3><p:outputLabel styleClass="fieldsetH3" value="#{vistaMinutaContrato['general_label_integrantes_consorcio_u_temporal']}" /></h3>
+                            <p:panelGrid columns="8" styleClass="panelGridSiCapital" layout="grid">
+                                <sicapital:tagInputText tagId="identificacionConsorcio" 
+                                                        tagLabel="#{vistaMinutaContrato['general_label_integrantes_identificacion']}" />
+                                <sicapital:tagInputText tagId="dvConsorcio" 
+                                                        tagLabel="#{vistaMinutaContrato['general_label_integrantes_dv']}" />
+                                <sicapital:tagInputText tagId="representanteConsorcio" 
+                                                        tagLabel="#{vistaMinutaContrato['general_label_representante_legal']}" />
+                                <sicapital:tagInputText tagId="porcentajeConsorcio" 
+                                                        tagLabel="#{vistaMinutaContrato['general_label_integrantes_porcentaje_parti']}" />
+                                
+                                <sicapital:tagInputText tagId="direccion" 
+                                                        tagLabel="#{vistaMinutaContrato['general_label_direccion']}" 
+                                                        tagRequired="true"/>
+                                <sicapital:tagInputText tagId="telefonoCasa" 
+                                                               tagLabel="#{vistaMinutaContrato['general_label_telefono_casa']}" />
+                                <sicapital:tagInputText tagId="telefonoMovil" 
+                                                               tagLabel="#{vistaMinutaContrato['general_label_telefono_movil']}"
+                                                               tagRequired="true"/>
+                                <sicapital:tagInputText tagId="email" 
+                                                               tagLabel="#{vistaMinutaContrato['general_label_email']}" 
+                                                               tagRequired="true"/>
+                            </p:panelGrid>
+                            
+                            <p:panelGrid columns="10" styleClass="panelGridSiCapital" layout="grid">
+                                 <sicapital:tagSelectOneMenu tagId="ciudad"
+                                                            tagValue="Bogota"  
+                                                            tagLabel="#{vistaMinutaContrato['general_label_ciudad']}" 
+                                                            />
+                                <sicapital:tagSelectOneMenu tagId="claseContratista"
+                                                            tagValue="Unico contratista"  
+                                                            tagLabel="#{vistaMinutaContrato['general_label_clase_contratista']}" 
+                                                            />
+                                 <sicapital:tagSelectOneMenu tagId="nivelEducativo"
+                                                            tagValue="Profesional"  
+                                                            tagLabel="#{vistaMinutaContrato['general_label_nivel_educativo']}" 
+                                                            tagRequired="true" />
+                                 <sicapital:tagSelectOneMenu tagId="profesion"
+                                                            tagValue="Abogado"  
+                                                            tagLabel="#{vistaMinutaContrato['general_label_profesion']}" 
+                                                            />
+                                 <sicapital:tagInputText tagId="numeroTarjetaProfesional" 
+                                                         tagLabel="#{vistaMinutaContrato['general_label_numero_tarjeta_profesional']}" 
+                                                         />
+                                
+                            </p:panelGrid>
+                            
+                            
+                           <p:dataTable value="#{controladorMinutaContrato.listaPestCdp}" 
+                                         var="lista" 
+                                         id="tabla"
+                                         emptyMessage="Sin registros">
+                                <p:column headerText="valor">
+                                    <p:inputText value="#{lista.valor}" />
+                                </p:column>
+                            </p:dataTable>
+                        </p:panelGrid>   
+                    </p:fieldset>
+                    <!-- CDP -->  
+                    <p:fieldset legend="#{vistaMinutaContrato['general_tab_cdp']}" 
+                                toggleable="true" collapsed="true"
+                                toggleSpeed="500">
+                        <p:panelGrid columns="8" styleClass="panelGridSiCapital" layout="grid">
+                            <sicapital:tagSelectOneMenu tagId="rubro"
+                                                        tagValue="rubro"  
+                                                        tagLabel="#{vistaMinutaContrato['general_label_rubro']}" 
+                                                        />
+                            <sicapital:tagInputText tagId="numeroCdp" 
+                                                    tagLabel="#{vistaMinutaContrato['general_label_no_cdp']}" 
+                                                    />
+                            <sicapital:tagCalendar  tagId="fechaCdp" 
+                                                    tagLabel="#{vistaMinutaContrato['general_label_fecha_cdp']}"
+                                                    />
+                            <sicapital:tagInputText tagId="valorCdp" 
+                                                    tagLabel="#{vistaMinutaContrato['general_label_valor_cdp']}" 
+                                                    />
+                        </p:panelGrid>
+                    </p:fieldset>
+                    <!-- INTERVENTOR -->    
+                    <p:fieldset legend="#{vistaMinutaContrato['general_tab_interventor']}" 
+                                toggleable="true" collapsed="true"
+                                toggleSpeed="500">
+                        <p:panelGrid columns="8" styleClass="panelGridSiCapital" layout="grid">
+                            <sicapital:tagSelectOneMenu tagId="interventor"
+                                                        tagValue="interventor"  
+                                                        tagLabel="#{vistaMinutaContrato['general_label_interventor']}" 
+                                                        />
+                            <sicapital:tagInputText tagId="cargo" 
+                                                    tagLabel="#{vistaMinutaContrato['general_label_cargo']}" 
+                                                    /> 
+                            <sicapital:tagInputText tagId="dependencia" 
+                                                    tagLabel="#{vistaMinutaContrato['general_label_dependencia']}" 
+                                                    /> 
+                        </p:panelGrid>
+                    </p:fieldset>
+                    <!-- FIRMAS -->
+                    <p:fieldset legend="#{vistaMinutaContrato['general_tab_firmas']}" 
+                                toggleable="true" collapsed="true"
+                                toggleSpeed="500">
+                        <p:panelGrid columns="8" styleClass="panelGridSiCapital" layout="grid">
+                             <sicapital:tagSelectOneMenu tagId="firmaOrdenadorGastos"
+                                                        tagValue="Eleccion uno"  
+                                                        tagLabel="#{vistaMinutaContrato['general_label_firma_orde_gastos']}" 
+                                                        />
+                            <sicapital:tagSelectOneMenu tagId="firmaContratista"
+                                                        tagValue="Eleccion uno"  
+                                                        tagLabel="#{vistaMinutaContrato['general_label_firma_contratista']}" 
+                                                        />
+                            <sicapital:tagInputText tagId="abogadoResposable" 
+                                                    tagLabel="#{vistaMinutaContrato['general_label_abogado_responsable']}" 
+                                                    />
+                            <sicapital:tagSelectOneMenu tagId="reviso"
+                                                        tagValue="reviso"  
+                                                        tagLabel="#{vistaMinutaContrato['general_label_reviso']}" 
+                                                        />
+                            <sicapital:tagSelectOneMenu tagId="aproboOrdenadorGasto"
+                                                        tagValue="Eleccion uno"  
+                                                        tagLabel="#{vistaMinutaContrato['general_label_aprobo_ordenador_gasto']}" 
+                                                        /> 
+                            <sicapital:tagSelectOneMenu tagId="aprobo"
+                                                        tagValue="Eleccion uno"  
+                                                        tagLabel="#{vistaMinutaContrato['general_label_Aprobo']}" 
+                                                        />                            
+                            
+                        </p:panelGrid>
+                    </p:fieldset>
+                       
+                    <h:panelGrid columns="2">
+                        <p:commandButton id="btnEnviar" 
+                                         process="@all"                                          
+                                         value="#{vistaMinutaContrato['general_boton_validar']}"
+                                         action="#{controladorMinutaContrato.enviar}"
+                                         update="frmMinutaContrato"/>
+                        <p:commandButton icon="ui-icon-print" value="#{vistaMinutaContrato['general_boton_imprimir']}"/>
+                    </h:panelGrid>
+                </h:panelGroup>                
+            </p:panel>
+        </h:form>     
+    </ui:define>
+</ui:composition>
+</h:body>
+</html>

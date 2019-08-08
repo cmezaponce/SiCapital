@@ -172,7 +172,7 @@ public class SesionUtil {
      */
     public void addInfo(String msj) {
         try {
-            getFacesContext().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msj, msj));
+            getFacesContext().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", msj));
             if (!getFacesContext().getExternalContext().getFlash().isKeepMessages()) {
                 getFacesContext().getExternalContext().getFlash().setKeepMessages(true);
             }

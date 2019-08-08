@@ -3,6 +3,7 @@ D:\Users\Michael\Documents\SoftManagement\SecretariaDeMovilidad\siCapital\src\ma
 D:\Users\Michael\Documents\SoftManagement\SecretariaDeMovilidad\siCapital\src\main\java\co\gov\secretariamovilidad\sicapital\bean\AbstractMB.java
 D:\Users\Michael\Documents\SoftManagement\SecretariaDeMovilidad\siCapital\src\main\java\co\gov\secretariamovilidad\sicapital\util\HttpSession.java
 D:\Users\Michael\Documents\SoftManagement\SecretariaDeMovilidad\siCapital\src\main\java\co\gov\secretariamovilidad\sicapital\negocio\interfaces\Icontrato.java
+D:\Users\Michael\Documents\SoftManagement\SecretariaDeMovilidad\siCapital\src\main\java\co\gov\secretariamovilidad\sicapital\bean\ControladorMinutaContrato.java
 D:\Users\Michael\Documents\SoftManagement\SecretariaDeMovilidad\siCapital\src\main\java\co\gov\secretariamovilidad\sicapital\bean\ControladorPrueba.java
 D:\Users\Michael\Documents\SoftManagement\SecretariaDeMovilidad\siCapital\src\main\java\co\gov\secretariamovilidad\sicapital\negocio\implementacion\ContratoFachada.java
 D:\Users\Michael\Documents\SoftManagement\SecretariaDeMovilidad\siCapital\src\main\java\co\gov\secretariamovilidad\sicapital\util\excepciones\SiCapitalNegocioExcepcion.java

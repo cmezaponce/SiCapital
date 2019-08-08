@@ -12,16 +12,10 @@ input[type="text"][disabled] {
    font-size: 10pt;
 }
 
-.panelGridSiCapital {
+.panelGridSiCapital .ui-widget-content{
     width: 100%;
-}
-
-._50{
-    width:46%;
-    display:inline;
-    float:left;
-    margin-left:2%;
-    margin-right:2%
+    border: none;
+    font-size: 13pt;
 }
 
 body {
@@ -31,4 +25,24 @@ body {
     margin: 0 auto;
     width: 80%;
     padding: 2px;
+}
+
+.left {
+    float: left;
+}
+
+.left2 {
+    overflow: hidden;
+    display: block;
+    padding: 0 4px 0 10px
+}
+.left2 {
+    width: 100%
+}
+
+@media only screen and (max-width: 600px) {
+    #logo {
+        width: 400px;
+        height: 60px;
+    }
 }
