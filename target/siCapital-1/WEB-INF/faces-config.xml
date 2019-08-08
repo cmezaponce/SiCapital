@@ -5,25 +5,29 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
     http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
-	<application>
-                <locale-config>
-			<default-locale>es_CO</default-locale>
-		</locale-config>
-		<resource-bundle>
-			<base-name>co.gov.secretariamovilidad.sicapital.vista</base-name>
-			<var>vista</var>
-		</resource-bundle>
-                <resource-bundle>
-			<base-name>co.gov.secretariamovilidad.sicapital.solicitudElaboracionContrato</base-name>
-			<var>vistaElaboracionContrato</var>			
-		</resource-bundle>
-                <resource-bundle>
-                    <base-name>co.gov.secretariamovilidad.sicapital.estudiosprevios</base-name>
-			<var>estudiosprevios</var>
-                </resource-bundle>
-                <resource-bundle>
-			<base-name>co.gov.secretariamovilidad.sicapital.minutaContrato</base-name>
-			<var>vistaMinutaContrato</var>			
-		</resource-bundle>
-	</application>
+    <application>
+        <locale-config>
+            <default-locale>es_CO</default-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>co.gov.secretariamovilidad.sicapital.vista</base-name>
+            <var>vista</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>co.gov.secretariamovilidad.sicapital.solicitudElaboracionContrato</base-name>
+            <var>vistaElaboracionContrato</var>			
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>co.gov.secretariamovilidad.sicapital.estudiosprevios</base-name>
+            <var>estudiosprevios</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>co.gov.secretariamovilidad.sicapital.minutaContrato</base-name>
+            <var>vistaMinutaContrato</var>			
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>co.gov.secretariamovilidad.sicapital.login</base-name>
+            <var>login</var>
+        </resource-bundle>
+    </application>
 </faces-config>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+<ui:composition template="/template.xhtml">
+    <ui:define name="title">Login</ui:define>
+            <ui:define name="content">
+        <h:form  prependId="false" id="frmLogin" >
+            <div class="ui-fluid">
+                <div class="topLogin">
+                <p:panelGrid columns="4" columnClasses="ui-g-12 ui-md-4,ui-g-12 ui-md-2,ui-g-12 ui-md-2,ui-g-12 ui-md-4" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+                    <p:spacer />
+                    <p:outputLabel for="login" value="#{login['login']}" />
+                    <p:inputText id="login" placeholder="#{login['login']}" required="true" />
+                    <p:message for="login" />
+                    
+                    
+                    
+                    <p:spacer />
+                    <p:outputLabel for="password" value="#{login['password']}"/>
+                    <p:password id="password" placeholder="#{login['password']}" required="true" />
+                    <p:message for="password" />
+                    
+                                       
+                    <p:spacer />
+                    <p:outputLabel for="database" value="#{login['databasetext']}"/>
+                    <p:inputText id="database" placeholder="#{login['databasetext']}" value="#{login['database']}" required="true"/>
+                    <p:message for="database" />
+                    
+                </p:panelGrid>    
+                <br />
+                <p:panelGrid  columns="3" columnClasses="ui-g-12 ui-md-5,ui-g-12 ui-md-2,ui-g-12 ui-md-5" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">    
+                    <p:spacer />
+                    <p:commandButton value="#{login['ingresar']}" 
+                             id="btnIngresar" 
+                             process="@all" icon="ui-icon-key"
+                             action="#{ControladorLogin.ingresar}" 
+                             update="frmLogin"
+                              ajax="false"
+                             />
+                    <p:spacer />
+                    
+                    <p:spacer />
+                    <p:spacer />
+                    <h:outputText value="&#160;" />
+                    <p:spacer />
+                </p:panelGrid>    
+                </div>
+                
+            </div>
+        </h:form>
+            </ui:define>
+
+</ui:composition>
+</h:body>
+</html>
