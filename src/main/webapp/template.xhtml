@@ -21,7 +21,40 @@
 	href="#{facesContext.externalContext.requestContextPath}/resource/css/estilosSolicituElaboracionContrato.css" />
         <script type="text/javascript" charset="UTF-8"
 	src="#{facesContext.externalContext.requestContextPath}/resource/js/funciones.js?" />
-
+        <script type="text/javascript">
+			PrimeFaces.locales['es'] = {
+				closeText : 'Cerrar',
+				prevText : 'Anterior',
+				nextText : 'Siguiente',
+				monthNames : [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo',
+						'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+						'Noviembre', 'Diciembre' ],
+				monthNamesShort : [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
+						'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
+				dayNames : [ 'Domingo', 'Lunes', 'Martes', 'Miércoles',
+						'Jueves', 'Viernes', 'Sábado' ],
+				dayNamesShort : [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie',
+						'Sab' ],
+				dayNamesMin : [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+				weekHeader : 'Semana',
+				firstDay : 1,
+				isRTL : false,
+				showMonthAfterYear : false,
+				yearSuffix : '',
+				timeOnlyTitle : 'Sólo hora',
+				timeText : 'Tiempo',
+				hourText : 'Hora',
+				minuteText : 'Minuto',
+				secondText : 'Segundo',
+				currentText : 'Fecha actual',
+				ampm : false,
+				month : 'Mes',
+				week : 'Semana',
+				day : 'Día',
+				allDayText : 'Todo el día'
+			};
+			
+		</script>
     </h:head>
 <h:body>
     <!-- La clase ui-fluid hace que la pagina se comporte de modo responsive -->
@@ -29,7 +62,9 @@
         <!-- ENCABEZADO DE PAGINA -->
         <ui:include src="/plantillas/encabezadoPagina.xhtml" />
         <!-- CONTENIDO PRINCIPAL -->
-        <ui:insert name="content" id="otro"></ui:insert>
+        <ui:insert name="content" id="otro">
+ 
+        </ui:insert>
         <!-- PIE DE PAGINA -->
         <ui:include src="/plantillas/piePagina.xhtml" />
     </div>

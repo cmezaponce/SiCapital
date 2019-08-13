@@ -30,4 +30,15 @@
             <var>login</var>
         </resource-bundle>
     </application>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>minutaContrato</from-outcome>
+            <to-view-id>/minutaContrato.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>elaboracionContrato</from-outcome>
+            <to-view-id>/solicitudElaboracionContrato.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

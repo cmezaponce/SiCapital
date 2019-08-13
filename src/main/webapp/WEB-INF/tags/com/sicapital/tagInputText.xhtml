@@ -22,7 +22,6 @@
                         <p:outputLabel styleClass="obligatorio" for="#{tagId}" value="#{tagLabel}">
                             <span class="obligatorio"> *</span>
                             <p:inputText id="#{tagId}" required="true" value="#{tagValue}" requiredMessage="mecesita un valor"/>
-                            <p:message for="#{tagId}" display="icon" />
                         </p:outputLabel>
                     </c:when>
                     <c:otherwise>

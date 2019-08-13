@@ -4,7 +4,39 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/siCapital</jta-data-source>
     <class>co.gov.secretariamovilidad.sicapital.entidad.CoEntidadesIas</class>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoProveedor</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoParametroGeneral</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolicitudAdq</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqPlanPago</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoViabilXLineaPlan</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoPlanDet</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoPlanContratacion</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqUe</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqCdp</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoDtlleSolAdqC</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoCatalogoC</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoGrupoC</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoDtlleSolAdqD</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoCatalogoD</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoGrupoD</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqAnexo</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoDtlleSolAdqS</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoCatalogoS</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoGrupoS</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqEntrega</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqEntregaS</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqObligacion</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqDep</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqGarantia</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqRubro</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqAmparo</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqCarC</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqCarD</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqEntregaC</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqEntregaD</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoUsuarios</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolElabCon</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="co.gov.secretariamovilidad.sicapital.entidad" value="create"/>
     </properties>

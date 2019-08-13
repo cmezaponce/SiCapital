@@ -1,7 +1,6 @@
 package co.gov.secretariamovilidad.sicapital.util.excepciones;
 
 import co.gov.secretariamovilidad.sicapital.util.ResourceBundleUtil;
-import co.gov.secretariamovilidad.sicapital.util.SesionUtil;
 import co.gov.secretariamovilidad.sicapital.util.enums.ErrorEnum;
 import java.util.ResourceBundle;
 import org.apache.commons.logging.Log;

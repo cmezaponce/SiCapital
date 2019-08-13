@@ -10,27 +10,56 @@
 <h:body>
 <ui:composition template="/template.xhtml">
     <ui:define name="content">
-        <h:form prependId="false" id="frmPrincipal">
+        <h:form id="frmPrincipal">
              
             <p:panel id="panelPrincipal" header="#{vistaElaboracionContrato['general_label_solicitud_elaboracion_contrato']}">
                 <p:growl id="growl" showDetail="true" sticky="true" /> 
                 <!-- PANEL CABECERA -->              
-                <h:panelGroup>                        
-                    <p:panelGrid columns="6" styleClass="panelGridSiCapital" layout="grid">
+                <h:panelGroup id="agrupadoGeneral">                        
+                    <p:panelGrid columns="9" styleClass="panelGridSiCapital" layout="grid">
                         <p:outputLabel for="valorContratacion" value="#{vistaElaboracionContrato['general_label_valor_contratacion']}" />
-                        <p:inputText id="valorContratacion" value="#{controladorElabContrato.valor}"/>
+                        <p:inputText size="30" id="valorContratacion" value="#{controladorElabContrato.coSolicitudAdqConsulta.valorContratacion}"/>
                         <p:outputLabel for="fechaValorContratacion" value="#{vistaElaboracionContrato['general_label_fecha_solicitud']}" />
-                        <p:inputText id="fechaValorContratacion" disabled="true" value="31-07-2019"/>
-                        <p:outputLabel for="consultaSince" value="#{vistaElaboracionContrato['general_label_consulta_since']}" />
-                        <p:inputText id="consultaSince"/>
+                        <p:inputText id="fechaValorContratacion" disabled="true" value="#{controladorElabContrato.coSolElabCon.fecha}"/>
+                        <p:outputLabel for="vigencia" value="#{vistaElaboracionContrato['general_label_vigencia']}" />
+                        <p:inputText id="vigencia"  
+                                     value="#{controladorElabContrato.vigencia}"
+                                     maxlength="4" 
+                                     onkeypress="return soloNumeros(event)"/>
+                        <p:outputLabel for="sisco" value="#{vistaElaboracionContrato['general_label_numero_sisco']}" />
+                        <p:inputText id="sisco" 
+                                     value="#{controladorElabContrato.numeroSisco}"
+                                     maxlength="4" 
+                                     onkeypress="return soloNumeros(event)"/>
+                        <p:commandButton id="btnBuscarSisco" value="Buscar"
+                                         action="#{controladorElabContrato.verificarExistenciaNumSolAdqVigencia}"
+                                         process="@all"
+                                         update="growl agrupadoGeneral"/>
                     </p:panelGrid>
                     
-                    <p:panelGrid columns="5" styleClass="panelGridSiCapital" layout="grid">
+                    <p:panelGrid columns="7" styleClass="panelGridSiCapital" layout="grid">
                         <p:outputLabel for="proveedor" value="#{vistaElaboracionContrato['general_label_proveedor']}" />
-                        <p:inputText id="proveedor" disabled="true" value="JUAN CARLOS MOTIVAR QUINTANA"/>
+                        <p:inputText id="proveedor" disabled="true" value="#{controladorElabContrato.coProveedorSeleccionado.razonSocial}"/>
                         <p:outputLabel for="identificacion" value="#{vistaElaboracionContrato['general_label_identificacion']}" />
-                        <p:inputText id="identificacion" disabled="true" value="80904038"/>
-                        <p:commandButton value="#{vistaElaboracionContrato['general_boton_seleccionar_proveedor']}" />
+                        <p:inputText id="identificacion" disabled="true" value="#{controladorElabContrato.coProveedorSeleccionado.numIdentificacion}"/>
+                        <p:outputLabel for="seleccionaProveedor" value="#{vistaElaboracionContrato['general_label_seleccionar_proveedor']}" 
+                                       rendered="#{controladorElabContrato.muestraCampoSeleccionarProveedor}"/>
+                        <p:autoComplete var="proveedor"
+                                        maxResults="10"
+                                        id="seleccionaProveedor" 
+                                        itemValue="#{proveedor}"
+                                        rendered="#{controladorElabContrato.muestraCampoSeleccionarProveedor}"
+                                        converter="coProveedorConverter"
+                                        itemLabel="#{proveedor.razonSocial}" 
+                                        value="#{controladorElabContrato.coProveedorAutocompletar}" 
+                                        completeMethod="#{controladorElabContrato.nameSuggestions}">
+                            <p:ajax event="itemSelect" listener="#{controladorElabContrato.onItemSelect}"  process="@this" update="agrupadoGeneral growl" />
+                        </p:autoComplete>
+                        <p:commandButton value="#{vistaElaboracionContrato['general_boton_cancela_seleccionar_proveedor']}" 
+                                         rendered="#{!controladorElabContrato.muestraCampoSeleccionarProveedor}"
+                                         action="#{controladorElabContrato.cancelarSeleccionarProveedor}"
+                                         process="@all"
+                                         update="agrupadoGeneral"/>                           
                     </p:panelGrid>
                                            
                     <p:panelGrid columns="3" styleClass="panelGridSiCapital" layout="grid">
@@ -40,11 +69,15 @@
                     </p:panelGrid>                        
                        
                 </h:panelGroup>
+                <h:panelGrid columns="2">
                 <p:commandButton value="Enviar" 
                              id="btnEnviar" 
-                             process="@all" style="width: 20%"
+                             process="@form"
                              action="#{controladorElabContrato.salvar}" 
-                             update="frmPrincipal"/>
+                             update="panelPrincipal"/>
+                <p:commandButton value="#{vistaElaboracionContrato['general_boton_minuta_contrato']}" 
+                                         action="#{controladorElabContrato.minutaContrato}"/>
+                </h:panelGrid>
             </p:panel>
             
             <!-- TAB PRINCIPAL -->

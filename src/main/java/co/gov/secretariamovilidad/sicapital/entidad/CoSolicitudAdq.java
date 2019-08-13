@@ -40,6 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "CoSolicitudAdq.findAll", query = "SELECT c FROM CoSolicitudAdq c"),
     @NamedQuery(name = "CoSolicitudAdq.findByVigencia", query = "SELECT c FROM CoSolicitudAdq c WHERE c.coSolicitudAdqPK.vigencia = :vigencia"),
+    @NamedQuery(name = "CoSolicitudAdq.findByVigenciaNumSisconum_sol_adq", query = "SELECT c FROM CoSolicitudAdq c WHERE c.coSolicitudAdqPK.vigencia = :vigencia and c.coSolicitudAdqPK.numSolAdq = :numSolAdq"),
     @NamedQuery(name = "CoSolicitudAdq.findByNumSolAdq", query = "SELECT c FROM CoSolicitudAdq c WHERE c.coSolicitudAdqPK.numSolAdq = :numSolAdq"),
     @NamedQuery(name = "CoSolicitudAdq.findByExternaInterna", query = "SELECT c FROM CoSolicitudAdq c WHERE c.externaInterna = :externaInterna"),
     @NamedQuery(name = "CoSolicitudAdq.findByEnviadaRecibida", query = "SELECT c FROM CoSolicitudAdq c WHERE c.enviadaRecibida = :enviadaRecibida"),

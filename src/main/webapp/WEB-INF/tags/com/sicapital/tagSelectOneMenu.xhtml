@@ -17,20 +17,21 @@
                         display: none;
                     }
                 </style>
-                <c:set var="appendTo" value="#{tagRequired}" />
+                <c:set var="requerido" value="#{tagRequired}" />
+                <c:set var="valor" value="#{tagValue}" />
                 <c:choose>
-                    <c:when test="${appendTo == 'true'}">
+                    <c:when test="${requerido == 'true'}">
                         <p:outputLabel styleClass="obligatorio" for="#{tagId}" value="#{tagLabel}">
                             <span class="obligatorio"> *</span>
-                            <p:selectOneMenu id="#{tagId}" required="true">                         
-                                <f:selectItem itemLabel="#{tagValue}" itemValue="#{tagValue}" />
+                            <p:selectOneMenu id="#{tagId}" required="true">
+                                <f:selectItems value="#{tagValue}" />                                
                             </p:selectOneMenu>
                         </p:outputLabel>
                     </c:when>
                     <c:otherwise>
                         <p:outputLabel for="#{tagId}" value="#{tagLabel}">
-                            <p:selectOneMenu id="#{tagId}">                         
-                                <f:selectItem itemLabel="#{tagValue}" itemValue="#{tagValue}" />
+                            <p:selectOneMenu id="#{tagId}">           
+                                <f:selectItems value="#{tagValue}" />
                             </p:selectOneMenu>
                         </p:outputLabel>
                     </c:otherwise>
