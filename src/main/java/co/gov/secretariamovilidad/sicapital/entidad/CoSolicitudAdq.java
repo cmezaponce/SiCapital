@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,6 +26,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -40,7 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "CoSolicitudAdq.findAll", query = "SELECT c FROM CoSolicitudAdq c"),
     @NamedQuery(name = "CoSolicitudAdq.findByVigencia", query = "SELECT c FROM CoSolicitudAdq c WHERE c.coSolicitudAdqPK.vigencia = :vigencia"),
-    @NamedQuery(name = "CoSolicitudAdq.findByVigenciaNumSisconum_sol_adq", query = "SELECT c FROM CoSolicitudAdq c WHERE c.coSolicitudAdqPK.vigencia = :vigencia and c.coSolicitudAdqPK.numSolAdq = :numSolAdq"),
+    @NamedQuery(name = "CoSolicitudAdq.findByVigenciaNumSiscoNum", query = "SELECT c FROM CoSolicitudAdq c WHERE c.coSolicitudAdqPK.vigencia = :vigencia and c.coSolicitudAdqPK.numSolAdq = :numSolAdq"),
     @NamedQuery(name = "CoSolicitudAdq.findByNumSolAdq", query = "SELECT c FROM CoSolicitudAdq c WHERE c.coSolicitudAdqPK.numSolAdq = :numSolAdq"),
     @NamedQuery(name = "CoSolicitudAdq.findByExternaInterna", query = "SELECT c FROM CoSolicitudAdq c WHERE c.externaInterna = :externaInterna"),
     @NamedQuery(name = "CoSolicitudAdq.findByEnviadaRecibida", query = "SELECT c FROM CoSolicitudAdq c WHERE c.enviadaRecibida = :enviadaRecibida"),
@@ -113,6 +115,18 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CoSolicitudAdq.findByConstNoExistOferente", query = "SELECT c FROM CoSolicitudAdq c WHERE c.constNoExistOferente = :constNoExistOferente"),
     @NamedQuery(name = "CoSolicitudAdq.findByObsPpto", query = "SELECT c FROM CoSolicitudAdq c WHERE c.obsPpto = :obsPpto")})
 public class CoSolicitudAdq implements Serializable {
+
+    @Lob
+    @Column(name = "JUSTIFICATION")
+    private String justification;
+    @Column(name = "PLAZO_SOL2")
+    private BigDecimal plazoSol2;
+    @Size(max = 30)
+    @Column(name = "TIPO_PLAZO_SOL2")
+    private String tipoPlazoSol2;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coSolicitudAdq")
+    private List<CoSolAdqInterventor> coSolAdqInterventorList;
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -362,7 +376,12 @@ public class CoSolicitudAdq implements Serializable {
     private Collection<CoSolAdqGarantia> coSolAdqGarantiaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "coSolicitudAdq")
     private Collection<CoSolAdqRubro> coSolAdqRubroCollection;
-
+    
+    @Transient
+    private String dependenciaSolicitud;
+    @Transient
+    private CoSolAdqInterventor coSolAdqInterventor;
+    
     public CoSolicitudAdq() {
     }
 
@@ -1081,6 +1100,17 @@ public class CoSolicitudAdq implements Serializable {
         this.coSolAdqRubroCollection = coSolAdqRubroCollection;
     }
 
+    public String getDependenciaSolicitud() {
+        return dependenciaSolicitud;
+    }
+
+    public void setDependenciaSolicitud(String dependenciaSolicitud) {
+        this.dependenciaSolicitud = dependenciaSolicitud;
+    }
+    
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -1105,5 +1135,47 @@ public class CoSolicitudAdq implements Serializable {
     public String toString() {
         return "co.gov.secretariamovilidad.sicapital.entidad.CoSolicitudAdq[ coSolicitudAdqPK=" + coSolicitudAdqPK + " ]";
     }
+
+    public String getJustification() {
+        return justification;
+    }
+
+    public void setJustification(String justification) {
+        this.justification = justification;
+    }
+
+    public BigDecimal getPlazoSol2() {
+        return plazoSol2;
+    }
+
+    public void setPlazoSol2(BigDecimal plazoSol2) {
+        this.plazoSol2 = plazoSol2;
+    }
+
+    public String getTipoPlazoSol2() {
+        return tipoPlazoSol2;
+    }
+
+    public void setTipoPlazoSol2(String tipoPlazoSol2) {
+        this.tipoPlazoSol2 = tipoPlazoSol2;
+    }
+
+    @XmlTransient
+    public List<CoSolAdqInterventor> getCoSolAdqInterventorList() {
+        return coSolAdqInterventorList;
+    }
+
+    public void setCoSolAdqInterventorList(List<CoSolAdqInterventor> coSolAdqInterventorList) {
+        this.coSolAdqInterventorList = coSolAdqInterventorList;
+    }
+
+    public CoSolAdqInterventor getCoSolAdqInterventor() {
+        return coSolAdqInterventor;
+    }
+
+    public void setCoSolAdqInterventor(CoSolAdqInterventor coSolAdqInterventor) {
+        this.coSolAdqInterventor = coSolAdqInterventor;
+    }
+    
     
 }

@@ -5,12 +5,14 @@
  */
 package co.gov.secretariamovilidad.sicapital.negocio.interfaces;
 
+import co.gov.secretariamovilidad.sicapital.entidad.BinTablas;
 import co.gov.secretariamovilidad.sicapital.entidad.CoEntidadesIas;
 import co.gov.secretariamovilidad.sicapital.entidad.CoProveedor;
+import co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqCdp;
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolElabCon;
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolicitudAdq;
-import co.gov.secretariamovilidad.sicapital.util.excepciones.SiCapitalEntidadExcepcion;
 import co.gov.secretariamovilidad.sicapital.util.excepciones.SiCapitalNegocioExcepcion;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,7 +23,7 @@ public interface Icontrato {
     /**
      * Retorna la lista de CoEntidadesIas
      * @return
-     * @throws SiCapitalEntidadExcepcion 
+     * @throws co.gov.secretariamovilidad.sicapital.util.excepciones.SiCapitalNegocioExcepcion 
      */
     List<CoEntidadesIas> retornaCoEntidadesIas() throws SiCapitalNegocioExcepcion;
     
@@ -64,5 +66,33 @@ public interface Icontrato {
      * @throws SiCapitalNegocioExcepcion 
      */
     CoSolElabCon retornaElaboracionContratoVigenciaNumSolAdq (int vigencia, int numSolAdq)throws SiCapitalNegocioExcepcion;
-
+    
+    /**
+     * Retorna el nombre de la dependencia de la solicitud
+     * @param dependencia
+     * @param codigoCom
+     * @param fechaSolicitud
+     * @return
+     * @throws SiCapitalNegocioExcepcion 
+     */
+    String retornaNombreDependencia(String dependencia, String codigoCom, Date fechaSolicitud) throws SiCapitalNegocioExcepcion;
+    
+    /**
+     * Retorna el cargo del interventor
+     * @param grupo
+     * @param nombre
+     * @param internoInterventor
+     * @return
+     * @throws SiCapitalNegocioExcepcion 
+     */
+    BinTablas retornaElaboracionCargo(String grupo, String nombre, int internoInterventor) throws SiCapitalNegocioExcepcion;
+    
+    /**
+     * Retorna una lista de los cdps de acuerdo a:
+     * @param numSolAdq
+     * @param vigencia
+     * @return
+     * @throws SiCapitalNegocioExcepcion 
+     */
+    List<CoSolAdqCdp> retornaListaCdp(int numSolAdq, int vigencia) throws SiCapitalNegocioExcepcion;
 }

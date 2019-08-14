@@ -6,7 +6,6 @@
 package co.gov.secretariamovilidad.sicapital.dao;
 
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolElabCon;
-import co.gov.secretariamovilidad.sicapital.entidad.CoSolicitudAdq;
 import co.gov.secretariamovilidad.sicapital.util.enums.ErrorEnum;
 import co.gov.secretariamovilidad.sicapital.util.excepciones.SiCapitalEntidadExcepcion;
 import javax.persistence.EntityManager;
@@ -37,8 +36,8 @@ public class CoSolElabConFachada extends AbstractFacade<CoSolElabCon> {
     protected EntityManager getEntityManager() {
         return this.entityManager;
     }
-    
-    public CoSolElabCon retornaElaboracionContratoVigenciaNumSolAdq (int vigencia, int numSolAdq)throws SiCapitalEntidadExcepcion{
+
+    public CoSolElabCon retornaElaboracionContratoVigenciaNumSolAdq(int vigencia, int numSolAdq) throws SiCapitalEntidadExcepcion {
         try {
             StringBuilder sql = new StringBuilder("SELECT c FROM CoSolElabCon c, CoSolicitudAdq csa where c.coSolElabConPK.codigoCompania = csa.codigoCompania ");
             sql.append(" and c.coSolElabConPK.vigencia = csa.coSolicitudAdqPK.vigencia");
@@ -47,19 +46,13 @@ public class CoSolElabConFachada extends AbstractFacade<CoSolElabCon> {
             sql.append(" and csa.coSolicitudAdqPK.numSolAdq = ").append(numSolAdq);
             Query query = getEntityManager().createQuery(sql.toString());
             if (!query.getResultList().isEmpty()) {
-                return (CoSolElabCon)query.getSingleResult();
+                return (CoSolElabCon) query.getSingleResult();
             }
-            
-            /*return (CoSolElabCon)getEntityManager().createNamedQuery("CoSolElabCon.findByVigenciaNumSolAdqCodigoComp")
-                   .setParameter("vigencia", vigencia)
-                   .setParameter("numSolAdq", numSolAdq).getSingleResult();*/
-        }catch (PersistenceException pe) {
-            System.out.println("Error :"+pe.getMessage());
+        } catch (PersistenceException pe) {
             throw new SiCapitalEntidadExcepcion(pe);
         } catch (Exception e) {
-            System.out.println("Error :"+e.getMessage());
             throw new SiCapitalEntidadExcepcion(ErrorEnum.SYSx001, e);
         }
-        return  null;
+        return null;
     }
 }

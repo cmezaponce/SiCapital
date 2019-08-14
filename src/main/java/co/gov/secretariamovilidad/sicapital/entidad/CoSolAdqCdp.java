@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CoSolAdqCdp.findAll", query = "SELECT c FROM CoSolAdqCdp c"),
     @NamedQuery(name = "CoSolAdqCdp.findByVigencia", query = "SELECT c FROM CoSolAdqCdp c WHERE c.coSolAdqCdpPK.vigencia = :vigencia"),
     @NamedQuery(name = "CoSolAdqCdp.findByNumSolAdq", query = "SELECT c FROM CoSolAdqCdp c WHERE c.coSolAdqCdpPK.numSolAdq = :numSolAdq"),
+    @NamedQuery(name = "CoSolAdqCdp.findByNumSolAdqVigencia", query = "SELECT c FROM CoSolAdqCdp c WHERE c.coSolAdqCdpPK.numSolAdq = :numSolAdq and c.coSolAdqCdpPK.vigencia = :vigencia"),
     @NamedQuery(name = "CoSolAdqCdp.findByNumeroDisponibilidad", query = "SELECT c FROM CoSolAdqCdp c WHERE c.coSolAdqCdpPK.numeroDisponibilidad = :numeroDisponibilidad"),
     @NamedQuery(name = "CoSolAdqCdp.findByFechaDisponibilidad", query = "SELECT c FROM CoSolAdqCdp c WHERE c.fechaDisponibilidad = :fechaDisponibilidad"),
     @NamedQuery(name = "CoSolAdqCdp.findByValor", query = "SELECT c FROM CoSolAdqCdp c WHERE c.valor = :valor"),

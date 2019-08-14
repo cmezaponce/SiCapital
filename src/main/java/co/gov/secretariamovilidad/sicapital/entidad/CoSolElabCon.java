@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -58,7 +59,8 @@ public class CoSolElabCon implements Serializable {
     private String numeroProceso;
     @Column(name = "INTERNO_PROVEEDOR")
     private BigInteger internoProveedor;
-
+   
+    
     public CoSolElabCon() {
     }
 
@@ -157,5 +159,6 @@ public class CoSolElabCon implements Serializable {
     public String toString() {
         return "co.gov.secretariamovilidad.sicapital.entidad.CoSolElabCon[ coSolElabConPK=" + coSolElabConPK + " ]";
     }
+    
     
 }

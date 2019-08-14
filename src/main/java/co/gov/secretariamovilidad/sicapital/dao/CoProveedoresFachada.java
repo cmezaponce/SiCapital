@@ -14,7 +14,7 @@ import javax.persistence.Query;
  *
  * @author maikol
  */
-public class CoProveedoresFachada extends AbstractFacade<CoProveedoresFachada> {
+public class CoProveedoresFachada extends AbstractFacade<CoProveedor> {
 
     /**
      * Atributo entityManager : EntityManager
@@ -23,7 +23,7 @@ public class CoProveedoresFachada extends AbstractFacade<CoProveedoresFachada> {
     private EntityManager entityManager;
 
     public CoProveedoresFachada() {
-        super(CoProveedoresFachada.class);
+        super(CoProveedor.class);
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("sicapital");
         entityManager = emf.createEntityManager();
     }
@@ -35,7 +35,6 @@ public class CoProveedoresFachada extends AbstractFacade<CoProveedoresFachada> {
     
     public List<CoProveedor> listaProveedorPorRazonSocial(String razonSocial) throws SiCapitalEntidadExcepcion {
         try {
-            System.out.println("LLega: "+razonSocial);
             StringBuilder sql = new StringBuilder("select c from CoProveedor c where c.razonSocial ");
             sql.append("like '%").append(razonSocial).append("%' order by c.razonSocial");
             Query query = getEntityManager().createQuery(sql.toString());
@@ -43,10 +42,8 @@ public class CoProveedoresFachada extends AbstractFacade<CoProveedoresFachada> {
                 return query.getResultList();
             }
         } catch (PersistenceException pe) {
-            System.out.println("Error listaProveedorPorRazonSocial "+pe.getMessage());
             throw new SiCapitalEntidadExcepcion(pe);
         } catch (Exception e) {
-            System.out.println("Error listaProveedorPorRazonSocial "+e.getMessage());
             throw new SiCapitalEntidadExcepcion(ErrorEnum.SYSx001, e);
         }
         return null;
@@ -54,14 +51,11 @@ public class CoProveedoresFachada extends AbstractFacade<CoProveedoresFachada> {
     
     public CoProveedor retornaCoProveedorPorNumeroIdentificacion(long numIdentificacion) throws SiCapitalEntidadExcepcion {
         try {
-            System.out.println("retornaCoProveedorPorNumeroIdentificacion");
             return (CoProveedor)getEntityManager().createNamedQuery("CoProveedor.findNumIdentificacion", CoProveedor.class)
                    .setParameter("numIdentificacion", numIdentificacion).getSingleResult();
         }catch (PersistenceException pe) {
-            System.out.println("Error: "+pe.getMessage());
             throw new SiCapitalEntidadExcepcion(pe);
         } catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
             throw new SiCapitalEntidadExcepcion(ErrorEnum.SYSx001, e);
         }
     }

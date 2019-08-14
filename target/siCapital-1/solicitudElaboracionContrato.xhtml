@@ -18,39 +18,65 @@
                 <h:panelGroup id="agrupadoGeneral">                        
                     <p:panelGrid columns="9" styleClass="panelGridSiCapital" layout="grid">
                         <p:outputLabel for="valorContratacion" value="#{vistaElaboracionContrato['general_label_valor_contratacion']}" />
-                        <p:inputText size="30" id="valorContratacion" value="#{controladorElabContrato.coSolicitudAdqConsulta.valorContratacion}"/>
+                        <p:inputText size="30" 
+                                     id="valorContratacion" 
+                                     value="#{controladorElabContrato.coSolicitudAdqConsulta.valorContratacion}"/>
                         <p:outputLabel for="fechaValorContratacion" value="#{vistaElaboracionContrato['general_label_fecha_solicitud']}" />
-                        <p:inputText id="fechaValorContratacion" disabled="true" value="#{controladorElabContrato.coSolElabCon.fecha}"/>
+                        <p:inputText id="fechaValorContratacion" disabled="true" 
+                                     value="#{controladorElabContrato.coSolElabCon.fecha}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:inputText>
                         <p:outputLabel for="vigencia" value="#{vistaElaboracionContrato['general_label_vigencia']}" />
                         <p:inputText id="vigencia"  
                                      value="#{controladorElabContrato.vigencia}"
                                      maxlength="4" 
+                                     disabled="#{controladorElabContrato.muestraBotonCancelarBusSisco}"
+                                     required="true"
+                                     validatorMessage="Error"
                                      onkeypress="return soloNumeros(event)"/>
                         <p:outputLabel for="sisco" value="#{vistaElaboracionContrato['general_label_numero_sisco']}" />
                         <p:inputText id="sisco" 
                                      value="#{controladorElabContrato.numeroSisco}"
                                      maxlength="4" 
+                                     disabled="#{controladorElabContrato.muestraBotonCancelarBusSisco}"
+                                     required="true"
                                      onkeypress="return soloNumeros(event)"/>
                         <p:commandButton id="btnBuscarSisco" value="Buscar"
                                          action="#{controladorElabContrato.verificarExistenciaNumSolAdqVigencia}"
+                                         rendered="#{!controladorElabContrato.muestraBotonCancelarBusSisco}"
                                          process="@all"
-                                         update="growl agrupadoGeneral"/>
+                                         update="growl agrupadoGeneral tabPrincipalElaboracionContrato"/>
+                        <p:commandButton id="btnCancelarSisco" value="Cancelar"
+                                         action="#{controladorElabContrato.cancelarBuscarSisco}"
+                                         rendered="#{controladorElabContrato.muestraBotonCancelarBusSisco}"
+                                         process="@all"
+                                         update="growl agrupadoGeneral tabPrincipalElaboracionContrato"/>
                     </p:panelGrid>
                     
                     <p:panelGrid columns="7" styleClass="panelGridSiCapital" layout="grid">
-                        <p:outputLabel for="proveedor" value="#{vistaElaboracionContrato['general_label_proveedor']}" />
-                        <p:inputText id="proveedor" disabled="true" value="#{controladorElabContrato.coProveedorSeleccionado.razonSocial}"/>
-                        <p:outputLabel for="identificacion" value="#{vistaElaboracionContrato['general_label_identificacion']}" />
-                        <p:inputText id="identificacion" disabled="true" value="#{controladorElabContrato.coProveedorSeleccionado.numIdentificacion}"/>
-                        <p:outputLabel for="seleccionaProveedor" value="#{vistaElaboracionContrato['general_label_seleccionar_proveedor']}" 
-                                       rendered="#{controladorElabContrato.muestraCampoSeleccionarProveedor}"/>
+                        <p:outputLabel for="proveedor" 
+                                       value="#{vistaElaboracionContrato['general_label_proveedor']}"/>
+                        <p:inputText id="proveedor" 
+                                     disabled="true" 
+                                     size="70"
+                                     value="#{controladorElabContrato.coSolElabCon.nombreProveedor}"/>
+                        <p:outputLabel for="identificacion" 
+                                       value="#{vistaElaboracionContrato['general_label_identificacion']}" />
+                        <p:inputText id="identificacion" 
+                                     disabled="true" 
+                                     size="10"
+                                     value="#{controladorElabContrato.coSolElabCon.cedulaProveedor}"/>
+                        <p:outputLabel for="seleccionaProveedor" 
+                                       value="#{vistaElaboracionContrato['general_label_seleccionar_proveedor']}" 
+                                       rendered="#{!controladorElabContrato.muestraBotonCancelarBusSisco}"/>
                         <p:autoComplete var="proveedor"
                                         maxResults="10"
                                         id="seleccionaProveedor" 
+                                        size="30"
                                         itemValue="#{proveedor}"
-                                        rendered="#{controladorElabContrato.muestraCampoSeleccionarProveedor}"
                                         converter="coProveedorConverter"
                                         itemLabel="#{proveedor.razonSocial}" 
+                                        rendered="#{!controladorElabContrato.muestraBotonCancelarBusSisco}"
                                         value="#{controladorElabContrato.coProveedorAutocompletar}" 
                                         completeMethod="#{controladorElabContrato.nameSuggestions}">
                             <p:ajax event="itemSelect" listener="#{controladorElabContrato.onItemSelect}"  process="@this" update="agrupadoGeneral growl" />
@@ -59,13 +85,21 @@
                                          rendered="#{!controladorElabContrato.muestraCampoSeleccionarProveedor}"
                                          action="#{controladorElabContrato.cancelarSeleccionarProveedor}"
                                          process="@all"
+                                         immediate="true"
                                          update="agrupadoGeneral"/>                           
                     </p:panelGrid>
                                            
                     <p:panelGrid columns="3" styleClass="panelGridSiCapital" layout="grid">
-                        <p:outputLabel for="dependenciaSolicitud" value="#{vistaElaboracionContrato['general_label_dependencia_solicitud']}" />
-                        <p:inputText id="dependenciaSolicitud" value="0373"/>
-                        <p:inputText id="dependenciaSolicitudDos" value="DIRECCION DE PROCESOS ADMINISTRATIVOS"/>
+                        <p:outputLabel for="dependenciaSolicitud" 
+                                       value="#{vistaElaboracionContrato['general_label_dependencia_solicitud']}" />
+                        <p:inputText id="dependenciaSolicitud" 
+                                     size="2"
+                                     disabled="true"
+                                     value="#{controladorElabContrato.coSolicitudAdqConsulta.dependencia}"/>
+                        <p:inputText size="50" 
+                                     disabled="true"
+                                     id="dependenciaSolicitudDos"
+                                     value="#{controladorElabContrato.coSolicitudAdqConsulta.dependenciaSolicitud}"/>
                     </p:panelGrid>                        
                        
                 </h:panelGroup>
@@ -86,37 +120,62 @@
                 <p:tab title="#{vistaElaboracionContrato['general_tab_interventor']}" id="tabInterventor">
                     <h:panelGroup>
                         <p:panelGrid columns="5" styleClass="panelGridSiCapital" layout="grid">
-                            <h:outputLabel for="tipoInterventor" value="#{vistaElaboracionContrato['general_label_tipo_interventor']}" />
-                            <p:selectOneMenu id="tipoInterventor">
-                                <f:selectItem itemLabel="Funcionario" itemValue="" />
+                            <h:outputLabel for="tipoInterventor" rendered="" value="#{vistaElaboracionContrato['general_label_tipo_interventor']}" />
+                            <p:selectOneMenu id="tipoInterventor" 
+                                             disabled="true"
+                                             value="#{controladorElabContrato.coSolicitudAdqConsulta.coSolAdqInterventor.tipoInterventor}" >
+                                <f:selectItem itemLabel="Otro" itemValue="O" />
+                                <f:selectItem itemLabel="Funcionario" itemValue="F" />
                             </p:selectOneMenu>
                             <p:outputLabel for="cargoInterventor" value="#{vistaElaboracionContrato['general_label_cargo_interventor']}" />
-                            <p:inputText id="cargoInterventor" value="740" style="width:100%;"/>
-                            <p:inputText id="cargoInterventorOculto" value="SUBDIRECTOR TÉCNICO" />
+                            <p:inputText id="cargoInterventor" 
+                                         disabled="true"
+                                         value="#{controladorElabContrato.coSolicitudAdqConsulta.coSolAdqInterventor.coSolAdqInterventorPK.internoInterventor}" 
+                                         style="width:100%;"/>
+                            <p:inputText id="cargoInterventorOculto"  
+                                         disabled="true"
+                                         size="30"
+                                         style="text-align: right;"
+                                         value="#{controladorElabContrato.coSolicitudAdqConsulta.coSolAdqInterventor.cargo}" 
+                            />
                         </p:panelGrid>
                         
                         <p:panelGrid columns="4" styleClass="panelGridSiCapital" layout="grid">
                             <p:outputLabel for="cedulaInterventor" value="#{vistaElaboracionContrato['general_label_cedula_interventor']}" />
-                            <p:inputText id="cedulaInterventor" value="51827099" style="text-align: right;" />
+                            <p:inputText id="cedulaInterventor" 
+                                         value="#{controladorElabContrato.coSolicitudAdqConsulta.coSolAdqInterventor.cedulaInterventor}" 
+                                         disabled="true"
+                                         style="text-align: right;" />
                              <p:outputLabel for="nombreInterventor" value="#{vistaElaboracionContrato['general_label_nombre_interventor']}" />
-                            <p:inputText id="nombreInterventor" value="GLORIA INES GARCIA CORONEL" />
+                            <p:inputText id="nombreInterventor" 
+                                         size="80"
+                                         disabled="true"
+                                         value="#{controladorElabContrato.coSolicitudAdqConsulta.coSolAdqInterventor.nombreInterventor}" 
+ />
                         </p:panelGrid>
                     </h:panelGroup>
                 </p:tab>
                 <!-- TAB CDP -->
                 <p:tab title="#{vistaElaboracionContrato['general_tab_cdp']}" id="tabCdp">
-                    <ui:repeat value="#{controladorElabContrato.listaPestCdp}" var="cdp" id="datosDelCdp">
-                        <p:panelGrid columns="8" styleClass="panelGridSiCapital" layout="grid">
-                          <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_cdp_no']}"/>
-                            <p:inputText value="#{cdp.codigoCdp}" />
-                            <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_ue']}"/>
-                            <p:inputText value="#{cdp.ue}" />
-                            <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_valor']}"/>
-                            <p:inputText value="#{cdp.valor}" />
-                            <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_fecha']}"/>
-                            <p:calendar value="#{cdp.fecha}" pattern="dd/MM/yyyy" showOn="button"/>
-                        </p:panelGrid>
-                    </ui:repeat>
+                    <c:choose>
+                        <c:when test="#{empty  controladorElabContrato.listaPestCdp}">
+                            <p:outputLabel value="#{vistaElaboracionContrato['general_label_sin_datos']}"/>
+                        </c:when>
+                        <c:otherwise>
+                            <ui:repeat value="#{controladorElabContrato.listaPestCdp}" var="cdp" id="datosDelCdp">
+                                <p:panelGrid columns="8" styleClass="panelGridSiCapital" layout="grid">
+                                  <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_cdp_no']}"/>
+                                    <p:inputText value="#{cdp.coSolAdqCdpPK.numSolAdq}" />
+                                    <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_ue']}"/>
+                                    <p:inputText value="#{cdp.coSolAdqCdpPK.codigoUnidadEjecutora}" />
+                                    <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_valor']}"/>
+                                    <p:inputText value="#{cdp.valor}" />
+                                    <p:outputLabel value="#{vistaElaboracionContrato['general_tabla_label_fecha']}"/>
+                                    <p:calendar value="#{cdp.fechaDisponibilidad}" pattern="dd/MM/yyyy" showOn="button"/>
+                                </p:panelGrid>
+                            </ui:repeat>
+                        </c:otherwise>
+                    </c:choose>                    
                 </p:tab>
             </p:tabView>
         </h:form>     
