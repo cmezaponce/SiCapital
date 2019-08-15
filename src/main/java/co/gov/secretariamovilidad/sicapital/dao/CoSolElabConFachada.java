@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.gov.secretariamovilidad.sicapital.dao;
 
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolElabCon;
@@ -54,5 +49,17 @@ public class CoSolElabConFachada extends AbstractFacade<CoSolElabCon> {
             throw new SiCapitalEntidadExcepcion(ErrorEnum.SYSx001, e);
         }
         return null;
+    }
+    
+    public void actualizarCoSolElabCon(CoSolElabCon CoSolElabCon)throws SiCapitalEntidadExcepcion {
+         try {
+             System.out.println("ingresa actualizarCoSolElabCon");
+             editFreeResorces(CoSolElabCon);
+             System.out.println("ingresa actualizarCoSolElabCon sale");
+        } catch (PersistenceException pe) {
+            throw new SiCapitalEntidadExcepcion(pe);
+        } catch (Exception e) {
+            throw new SiCapitalEntidadExcepcion(ErrorEnum.SYSx001, e);
+        }
     }
 }

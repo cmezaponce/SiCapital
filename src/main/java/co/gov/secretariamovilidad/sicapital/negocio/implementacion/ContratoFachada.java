@@ -6,12 +6,14 @@ import co.gov.secretariamovilidad.sicapital.dao.CoProveedoresFachada;
 import co.gov.secretariamovilidad.sicapital.dao.CoSolAdqCdpFachada;
 import co.gov.secretariamovilidad.sicapital.dao.CoSolElabConFachada;
 import co.gov.secretariamovilidad.sicapital.dao.CoSolicitudAdqFachada;
+import co.gov.secretariamovilidad.sicapital.dao.TrcTercerosFachada;
 import co.gov.secretariamovilidad.sicapital.entidad.BinTablas;
 import co.gov.secretariamovilidad.sicapital.entidad.CoEntidadesIas;
 import co.gov.secretariamovilidad.sicapital.entidad.CoProveedor;
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqCdp;
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolElabCon;
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolicitudAdq;
+import co.gov.secretariamovilidad.sicapital.entidad.TrcTerceros;
 import co.gov.secretariamovilidad.sicapital.negocio.interfaces.Icontrato;
 import co.gov.secretariamovilidad.sicapital.util.excepciones.SiCapitalEntidadExcepcion;
 import co.gov.secretariamovilidad.sicapital.util.excepciones.SiCapitalNegocioExcepcion;
@@ -30,6 +32,7 @@ public class ContratoFachada implements Icontrato {
     private CoSolElabConFachada coSolElabConFachada;
     private BinTablasFachada binTablasFachada;
     private CoSolAdqCdpFachada coSolAdqCdpFachada;
+    private TrcTercerosFachada trcTercerosFachada;
 
     public ContratoFachada() {
         coEntidadesIasFachada = new CoEntidadesIasFachada();
@@ -38,6 +41,7 @@ public class ContratoFachada implements Icontrato {
         coSolElabConFachada = new CoSolElabConFachada();
         binTablasFachada = new BinTablasFachada();
         coSolAdqCdpFachada = new CoSolAdqCdpFachada();
+        trcTercerosFachada = new TrcTercerosFachada();
     }
 
     @Override
@@ -159,5 +163,27 @@ public class ContratoFachada implements Icontrato {
         } catch (Exception e) {
             throw new SiCapitalNegocioExcepcion(e);
         }
+    }
+
+    @Override
+    public TrcTerceros obtieneTercerosPorIdentificacion(String codigoIdentificacion) throws SiCapitalNegocioExcepcion {
+        try {
+            return trcTercerosFachada.obtieneTercerosPorIdentificacion(codigoIdentificacion);
+        } catch (SiCapitalEntidadExcepcion see) {
+            throw new SiCapitalNegocioExcepcion(see);
+        } catch (Exception e) {
+            throw new SiCapitalNegocioExcepcion(e);
+        }
+    }
+
+    @Override
+    public void actualizarCoSolElabCon(CoSolElabCon CoSolElabCon) throws SiCapitalNegocioExcepcion {
+        try {
+            coSolElabConFachada.actualizarCoSolElabCon(CoSolElabCon);
+        } catch (SiCapitalEntidadExcepcion see) {
+            throw new SiCapitalNegocioExcepcion(see);
+        } catch (Exception e) {
+            throw new SiCapitalNegocioExcepcion(e);
+        } 
     }
 }

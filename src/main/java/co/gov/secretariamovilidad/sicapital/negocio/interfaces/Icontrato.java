@@ -11,6 +11,7 @@ import co.gov.secretariamovilidad.sicapital.entidad.CoProveedor;
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqCdp;
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolElabCon;
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolicitudAdq;
+import co.gov.secretariamovilidad.sicapital.entidad.TrcTerceros;
 import co.gov.secretariamovilidad.sicapital.util.excepciones.SiCapitalNegocioExcepcion;
 import java.util.Date;
 import java.util.List;
@@ -95,4 +96,21 @@ public interface Icontrato {
      * @throws SiCapitalNegocioExcepcion 
      */
     List<CoSolAdqCdp> retornaListaCdp(int numSolAdq, int vigencia) throws SiCapitalNegocioExcepcion;
+    
+    /**
+     * Verifica si una cedula existe
+     * @param codigoIdentificacion
+     * @return
+     * @throws co.gov.secretariamovilidad.sicapital.util.excepciones.SiCapitalNegocioExcepcion
+     * @throws throws SiCapitalNegocioExcepcion; 
+     */
+    TrcTerceros obtieneTercerosPorIdentificacion(String codigoIdentificacion) throws SiCapitalNegocioExcepcion;
+    
+    /**
+     * actualiza CoSolElabCon
+     * @param CoSolElabCon
+     * @throws SiCapitalNegocioExcepcion 
+     */
+    void actualizarCoSolElabCon(CoSolElabCon CoSolElabCon)throws SiCapitalNegocioExcepcion;
+
 }

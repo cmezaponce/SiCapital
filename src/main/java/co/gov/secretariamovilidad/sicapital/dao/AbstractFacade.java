@@ -97,7 +97,22 @@ public abstract class AbstractFacade<T> {
     public void edit(T entity) throws SiCapitalEntidadExcepcion {
         try {
             getEntityManager().merge(entity);
-            //this.registrarLogAuditoria();
+        } catch (Exception e) {
+            LOGGER.error("Error en edit", e);
+            throw new SiCapitalEntidadExcepcion(e);
+        }
+    }
+    
+    /**
+     * @param entity
+     * @throws SipseEntidadExcepcion
+     */
+    public void editFreeResorces(T entity) throws SiCapitalEntidadExcepcion {
+        try {
+            getEntityManager().getTransaction().begin();
+            getEntityManager().persist(entity);
+            getEntityManager().merge(entity);
+            getEntityManager().getTransaction().commit();
         } catch (Exception e) {
             LOGGER.error("Error en edit", e);
             throw new SiCapitalEntidadExcepcion(e);

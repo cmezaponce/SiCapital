@@ -38,6 +38,9 @@
     <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolElabCon</class>
     <class>co.gov.secretariamovilidad.sicapital.entidad.BinTablas</class>
     <class>co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqInterventor</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.TrcTerceros</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.TrcInformacionBasica</class>
+    <class>co.gov.secretariamovilidad.sicapital.entidad.TrcOficinasBancoAgrario</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="co.gov.secretariamovilidad.sicapital.entidad" value="create"/>

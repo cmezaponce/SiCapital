@@ -8,6 +8,7 @@ import co.gov.secretariamovilidad.sicapital.entidad.CoSolAdqInterventorPK;
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolElabCon;
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolicitudAdq;
 import co.gov.secretariamovilidad.sicapital.entidad.CoSolicitudAdqPK;
+import co.gov.secretariamovilidad.sicapital.entidad.TrcTerceros;
 import co.gov.secretariamovilidad.sicapital.negocio.implementacion.ContratoFachada;
 import co.gov.secretariamovilidad.sicapital.negocio.interfaces.Icontrato;
 import co.gov.secretariamovilidad.sicapital.util.ResourceBundleUtil;
@@ -16,7 +17,6 @@ import co.gov.secretariamovilidad.sicapital.util.converter.CoProveedorConverter;
 import co.gov.secretariamovilidad.sicapital.util.enums.ElaboracionContratoEnum;
 import co.gov.secretariamovilidad.sicapital.util.excepciones.SiCapitalNegocioExcepcion;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -30,49 +30,68 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Controlador que tiene toda la logica de la vista de solicitud de elaboracion de contrato
+ * Controlador que tiene toda la logica de la vista de solicitud de elaboracion
+ * de contrato
+ *
  * @author maikol
  */
 @ManagedBean(name = ControladorSolicitudElaboracionContrato.BEAN_NAME)
 @SessionScoped
-public class ControladorSolicitudElaboracionContrato extends AbstractMB implements Serializable{
-    
+public class ControladorSolicitudElaboracionContrato extends AbstractMB implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
-    /** Logger **/
-    private static final Logger LOGGER = LoggerFactory.getLogger(ControladorSolicitudElaboracionContrato.class);
-    
-    /** Alias para el managed bean */
-    public static final String BEAN_NAME = "controladorElabContrato";
-    
-     /** Atributo aplicacionBundle : ResourceBundle */
-    private ResourceBundle aplicacionBundle;
-    
     /**
-     * Atributos de la clase 
+     * Logger *
      */
-    /** ATRIBUTOS TIPO INTERFACE */
+    private static final Logger LOGGER = LoggerFactory.getLogger(ControladorSolicitudElaboracionContrato.class);
+
+    /**
+     * Alias para el managed bean
+     */
+    public static final String BEAN_NAME = "controladorElabContrato";
+
+    /**
+     * Atributo aplicacionBundle : ResourceBundle
+     */
+    private ResourceBundle aplicacionBundle;
+
+    /**
+     * Atributos de la clase
+     */
+    /**
+     * ATRIBUTOS TIPO INTERFACE
+     */
     private Icontrato icontrato;
-    
-    /** ATRIBUTOS TIPO ENTIFAD/OBJETO **/
+
+    /**
+     * ATRIBUTOS TIPO ENTIFAD/OBJETO *
+     */
     private CoProveedor coProveedorAutocompletar;
     private CoProveedor coProveedorSeleccionado;
     private CoSolicitudAdq coSolicitudAdqConsulta;
     private CoSolElabCon coSolElabCon;
-    
-    /** ATRIBUTOS TIPO LISTA **/
+
+    /**
+     * ATRIBUTOS TIPO LISTA *
+     */
     private List<CoProveedor> listaProveedorAutocompletar;
-    private List<CoSolAdqCdp>listaPestCdp;
-    
-    /** ATRIBUTOS TIPO BOOLEAN **/
+    private List<CoSolAdqCdp> listaPestCdp;
+
+    /**
+     * ATRIBUTOS TIPO BOOLEAN *
+     */
     private boolean muestraCampoSeleccionarProveedor;
     private boolean muestraBotonCancelarBusSisco;
-    
-    /** ATRIBUTOS TIPO STRING **/
+    private boolean deshabilitaBotonSalvar;
+
+    /**
+     * ATRIBUTOS TIPO STRING *
+     */
     private String valor;
     private String vigencia;
     private String numeroSisco;
-    
+
     @PostConstruct
     @Override
     public void init() {
@@ -83,88 +102,163 @@ public class ControladorSolicitudElaboracionContrato extends AbstractMB implemen
         listaProveedorAutocompletar = new ArrayList<CoProveedor>();
         muestraCampoSeleccionarProveedor = true;
         muestraBotonCancelarBusSisco = false;
-        
-        coSolicitudAdqConsulta = new  CoSolicitudAdq();
+        deshabilitaBotonSalvar = true;
+        coSolicitudAdqConsulta = new CoSolicitudAdq();
         coSolicitudAdqConsulta.setCoSolicitudAdqPK(new CoSolicitudAdqPK());
-        coSolicitudAdqConsulta.setValorContratacion(BigDecimal.ZERO);
         coSolicitudAdqConsulta.setCoSolAdqInterventor(new CoSolAdqInterventor(new CoSolAdqInterventorPK()));
         listaPestCdp = new ArrayList<CoSolAdqCdp>();
     }
-    
+
     /**
      * Verifica si existe el numero de sol adq
      */
-    public void verificarExistenciaNumSolAdqVigencia(){
-        try { 
+    public void verificarExistenciaNumSolAdqVigencia() {
+        try {
             muestraBotonCancelarBusSisco = false;
-            if(vigencia.equals("")) {
-                SesionUtil.getInstance().addError(aplicacionBundle.getString("general_mensaje_campo_vigencia")); 
-            } else if( numeroSisco.equals("")){
+            deshabilitaBotonSalvar = true;
+            if (vigencia.equals("")) {
+                SesionUtil.getInstance().addError(aplicacionBundle.getString("general_mensaje_campo_vigencia"));
+            } else if (numeroSisco.equals("")) {
                 SesionUtil.getInstance().addError(aplicacionBundle.getString("general_mensaje_campo_numero"));
-            }else {               
-                coSolicitudAdqConsulta = icontrato.obtenerCoSolicitudAdqVigenciaNumSolicitudAdq(Integer.parseInt(vigencia)
-                                                                                                ,Integer.parseInt(numeroSisco));
-                if(coSolicitudAdqConsulta == null){                    
-                    coSolicitudAdqConsulta = new  CoSolicitudAdq();
+            } else {
+                coSolicitudAdqConsulta = icontrato.obtenerCoSolicitudAdqVigenciaNumSolicitudAdq(Integer.parseInt(vigencia),
+                        Integer.parseInt(numeroSisco));
+                if (coSolicitudAdqConsulta == null) {
+                    coSolicitudAdqConsulta = new CoSolicitudAdq();
                     coSolicitudAdqConsulta.setCoSolicitudAdqPK(new CoSolicitudAdqPK());
-                    coSolicitudAdqConsulta.setValorContratacion(BigDecimal.ZERO);
                     coSolicitudAdqConsulta.setCoSolAdqInterventor(new CoSolAdqInterventor(new CoSolAdqInterventorPK()));
                     listaPestCdp = new ArrayList<CoSolAdqCdp>();
                     SesionUtil.getInstance().addError(aplicacionBundle.getString("general_mensaje_sin_resultados"));
-                                         
-                } else if(coSolicitudAdqConsulta.getEstado().equalsIgnoreCase(ElaboracionContratoEnum.ESTADO_APROBADA.getValor())){
-                    coSolElabCon = icontrato.retornaElaboracionContratoVigenciaNumSolAdq(coSolicitudAdqConsulta.getCoSolicitudAdqPK().getVigencia(), 
-                                                                                         coSolicitudAdqConsulta.getCoSolicitudAdqPK().getNumSolAdq());
+
+                } else if (coSolicitudAdqConsulta.getEstado().equalsIgnoreCase(ElaboracionContratoEnum.ESTADO_APROBADA.getValor())) {
+                    coSolElabCon = icontrato.retornaElaboracionContratoVigenciaNumSolAdq(coSolicitudAdqConsulta.getCoSolicitudAdqPK().getVigencia(),
+                            coSolicitudAdqConsulta.getCoSolicitudAdqPK().getNumSolAdq());
                     muestraBotonCancelarBusSisco = true;
-                    String dependenciaSolicitud = icontrato.retornaNombreDependencia(coSolicitudAdqConsulta.getDependencia()
-                                                                                     ,coSolicitudAdqConsulta.getCodigoCompania()
-                                                                                     ,coSolicitudAdqConsulta.getFechaSolicitud());
-                    if(dependenciaSolicitud != null) 
+                    deshabilitaBotonSalvar = false;
+                    String dependenciaSolicitud = icontrato.retornaNombreDependencia(coSolicitudAdqConsulta.getDependencia(),
+                            coSolicitudAdqConsulta.getCodigoCompania(),
+                            coSolicitudAdqConsulta.getFechaSolicitud());
+                    if (dependenciaSolicitud != null) {
                         coSolicitudAdqConsulta.setDependenciaSolicitud(dependenciaSolicitud);
-                    if(coSolicitudAdqConsulta.getCoSolAdqInterventorList() != null &&
-                       coSolicitudAdqConsulta.getCoSolAdqInterventorList().size()>0){
-                       CoSolAdqInterventor c = coSolicitudAdqConsulta.getCoSolAdqInterventorList().get(0);
-                       BinTablas binTablas = icontrato.retornaElaboracionCargo(ElaboracionContratoEnum.ESTADO_CONTRATACION.getValor()
-                                                                               ,ElaboracionContratoEnum.ESTADO_CARGOS.getValor()
-                                                                               ,c.getCoSolAdqInterventorPK().getInternoInterventor().intValue());
-                       c.setCargo(binTablas.getResultado());
-                       coSolicitudAdqConsulta.setCoSolAdqInterventor(c);
                     }
-                    listaPestCdp = icontrato.retornaListaCdp(coSolicitudAdqConsulta.getCoSolicitudAdqPK().getNumSolAdq()
-                                                             ,coSolicitudAdqConsulta.getCoSolicitudAdqPK().getVigencia());
-                } else if(!coSolicitudAdqConsulta.getEstado().equalsIgnoreCase(ElaboracionContratoEnum.ESTADO_APROBADA.getValor())) {
-                   SesionUtil.getInstance().addInfo(aplicacionBundle.getString("general_mensaje_no_es_aprobado")); 
+                    if (coSolicitudAdqConsulta.getCoSolAdqInterventorList() != null
+                            && coSolicitudAdqConsulta.getCoSolAdqInterventorList().size() > 0) {
+                        CoSolAdqInterventor c = coSolicitudAdqConsulta.getCoSolAdqInterventorList().get(0);
+                        BinTablas binTablas = icontrato.retornaElaboracionCargo(ElaboracionContratoEnum.ESTADO_CONTRATACION.getValor(),
+                                ElaboracionContratoEnum.ESTADO_CARGOS.getValor(),
+                                c.getCoSolAdqInterventorPK().getInternoInterventor().intValue());
+                        if (binTablas != null) {
+                            c.setCargo(binTablas.getResultado());
+                            coSolicitudAdqConsulta.setCoSolAdqInterventor(c);
+                        }
+                    }
+                    listaPestCdp = icontrato.retornaListaCdp(coSolicitudAdqConsulta.getCoSolicitudAdqPK().getNumSolAdq(),
+                            coSolicitudAdqConsulta.getCoSolicitudAdqPK().getVigencia());
+                } else if (!coSolicitudAdqConsulta.getEstado().equalsIgnoreCase(ElaboracionContratoEnum.ESTADO_APROBADA.getValor())) {
+                    SesionUtil.getInstance().addInfo(aplicacionBundle.getString("general_mensaje_no_es_aprobado"));
                 }
-            }            
-               
+            }
+
         } catch (SiCapitalNegocioExcepcion ex) {
             SesionUtil.getInstance().addException(ex);
         }
     }
-    
+
     /**
      * Cancela la busqueda por numero sisco y deja la vista en modo entrada
+     *
+     * @return
      */
-    public void cancelarBuscarSisco(){
-        coSolicitudAdqConsulta = new CoSolicitudAdq();        
+    public String cancelarBuscarSisco() {
+        coSolicitudAdqConsulta = new CoSolicitudAdq();
         coSolicitudAdqConsulta.setCoSolicitudAdqPK(new CoSolicitudAdqPK());
+        coSolicitudAdqConsulta.setCoSolAdqInterventor(new CoSolAdqInterventor(new CoSolAdqInterventorPK()));
         coSolElabCon = new CoSolElabCon();
         vigencia = "";
-        numeroSisco= "";
+        numeroSisco = "";
         muestraBotonCancelarBusSisco = false;
+        deshabilitaBotonSalvar = true;
         listaPestCdp = new ArrayList<CoSolAdqCdp>();
+        return "elaboracionContrato";
     }
-    
+
+    /**
+     * Actualiza o guarda
+     */
     public void salvar() {
-        valor = "";
+        try {
+            System.out.println("INgresa " + coSolElabCon.getCedulaProveedor());
+            icontrato.actualizarCoSolElabCon(coSolElabCon);
+            coSolicitudAdqConsulta = icontrato.obtenerCoSolicitudAdqVigenciaNumSolicitudAdq(Integer.parseInt(vigencia),
+                    Integer.parseInt(numeroSisco));
+            if (coSolicitudAdqConsulta == null) {
+                coSolicitudAdqConsulta = new CoSolicitudAdq();
+                coSolicitudAdqConsulta.setCoSolicitudAdqPK(new CoSolicitudAdqPK());
+                coSolicitudAdqConsulta.setCoSolAdqInterventor(new CoSolAdqInterventor(new CoSolAdqInterventorPK()));
+                listaPestCdp = new ArrayList<CoSolAdqCdp>();
+                SesionUtil.getInstance().addError(aplicacionBundle.getString("general_mensaje_sin_resultados"));
+
+            } else if (coSolicitudAdqConsulta.getEstado().equalsIgnoreCase(ElaboracionContratoEnum.ESTADO_APROBADA.getValor())) {
+                coSolElabCon = icontrato.retornaElaboracionContratoVigenciaNumSolAdq(coSolicitudAdqConsulta.getCoSolicitudAdqPK().getVigencia(),
+                        coSolicitudAdqConsulta.getCoSolicitudAdqPK().getNumSolAdq());
+                muestraBotonCancelarBusSisco = true;
+                deshabilitaBotonSalvar = false;
+                String dependenciaSolicitud = icontrato.retornaNombreDependencia(coSolicitudAdqConsulta.getDependencia(),
+                        coSolicitudAdqConsulta.getCodigoCompania(),
+                        coSolicitudAdqConsulta.getFechaSolicitud());
+                if (dependenciaSolicitud != null) {
+                    coSolicitudAdqConsulta.setDependenciaSolicitud(dependenciaSolicitud);
+                }
+                if (coSolicitudAdqConsulta.getCoSolAdqInterventorList() != null
+                        && coSolicitudAdqConsulta.getCoSolAdqInterventorList().size() > 0) {
+                    CoSolAdqInterventor c = coSolicitudAdqConsulta.getCoSolAdqInterventorList().get(0);
+                    BinTablas binTablas = icontrato.retornaElaboracionCargo(ElaboracionContratoEnum.ESTADO_CONTRATACION.getValor(),
+                            ElaboracionContratoEnum.ESTADO_CARGOS.getValor(),
+                            c.getCoSolAdqInterventorPK().getInternoInterventor().intValue());
+                    if (binTablas != null) {
+                        c.setCargo(binTablas.getResultado());
+                        coSolicitudAdqConsulta.setCoSolAdqInterventor(c);
+                    }
+                }
+                listaPestCdp = icontrato.retornaListaCdp(coSolicitudAdqConsulta.getCoSolicitudAdqPK().getNumSolAdq(),
+                        coSolicitudAdqConsulta.getCoSolicitudAdqPK().getVigencia());
+                SesionUtil.getInstance().addInfo(aplicacionBundle.getString("general_mensaje_actualizado_guardado"));
+                deshabilitaBotonSalvar = true;
+            } else if (!coSolicitudAdqConsulta.getEstado().equalsIgnoreCase(ElaboracionContratoEnum.ESTADO_APROBADA.getValor())) {
+                SesionUtil.getInstance().addInfo(aplicacionBundle.getString("general_mensaje_no_es_aprobado"));
+            }
+        } catch (SiCapitalNegocioExcepcion ex) {
+            SesionUtil.getInstance().addException(ex);
+        }
     }
-    
+
+    /**
+     * Comprueba si la cedula que ingresaron es valida para la actualizacion del
+     * proveedor
+     */
+    public void compruebaCedula() {
+        try {
+            if (this.coSolElabCon != null && this.coSolElabCon.getCedulaProveedor() != null) {
+                TrcTerceros trcTerceros = icontrato.obtieneTercerosPorIdentificacion(this.coSolElabCon.getCedulaProveedor().toString());
+                if (trcTerceros == null) {
+                    SesionUtil.getInstance().addError(aplicacionBundle.getString("general_mensaje_no_existe_proveedor"));
+                    deshabilitaBotonSalvar = true;
+                } else {
+                    deshabilitaBotonSalvar = false;
+                }
+            }
+        } catch (SiCapitalNegocioExcepcion ex) {
+            SesionUtil.getInstance().addException(ex);
+        }
+    }
+
     /**
      * Metodo que retorna una lista para el autocompletar
+     *
      * @param query
      * @return
-     * @throws SiCapitalNegocioExcepcion 
-     */    
+     * @throws SiCapitalNegocioExcepcion
+     */
     public List<CoProveedor> nameSuggestions(String query) throws SiCapitalNegocioExcepcion {
         try {
             CoProveedorConverter.setFuncionarios(new ArrayList<CoProveedor>());
@@ -172,36 +266,37 @@ public class ControladorSolicitudElaboracionContrato extends AbstractMB implemen
                 CoProveedorConverter.setFuncionarios(icontrato.listaProveedorPorRazonSocial(query.toUpperCase()));
             }
             return CoProveedorConverter.getProveedor();
-	} catch (SiCapitalNegocioExcepcion sne) {
+        } catch (SiCapitalNegocioExcepcion sne) {
             SesionUtil.getInstance().addException(sne);
-	} catch (Exception e) {
+        } catch (Exception e) {
             SesionUtil.getInstance().addException(e);
-	}
-	return null;
+        }
+        return null;
     }
-    
+
     /**
      * Cancelar seleccion proveedor
      */
-    public void cancelarSeleccionarProveedor(){
+    public void cancelarSeleccionarProveedor() {
         coProveedorAutocompletar = new CoProveedor();
         listaProveedorAutocompletar = new ArrayList<CoProveedor>();
         muestraCampoSeleccionarProveedor = true;
         coProveedorSeleccionado = new CoProveedor();
     }
-    
-    public String minutaContrato(){
+
+    public String minutaContrato() {
         System.out.println("Devolver elaboracion contrato");
         return "minutaContrato";
     }
-    
+
     /**
      * Selecciona un nombre de la lista de seleccion de proveedores
-     * @param event 
+     *
+     * @param event
      */
     public void onItemSelect(SelectEvent event) {
         try {
-            FacesContext context = FacesContext.getCurrentInstance();        
+            FacesContext context = FacesContext.getCurrentInstance();
             coProveedorSeleccionado = icontrato.retornaCoProveedorPorNumeroIdentificacion(coProveedorAutocompletar.getNumIdentificacion());
             coProveedorAutocompletar = new CoProveedor();
             listaProveedorAutocompletar = new ArrayList<CoProveedor>();
@@ -210,10 +305,11 @@ public class ControladorSolicitudElaboracionContrato extends AbstractMB implemen
             SesionUtil.getInstance().addError(ex.getMessage());
         }
     }
-  
+
     /**
-     * GETTER AND SETTER   
-     * @return 
+     * GETTER AND SETTER
+     *
+     * @return
      */
     public List<CoSolAdqCdp> getListaPestCdp() {
         return listaPestCdp;
@@ -302,6 +398,13 @@ public class ControladorSolicitudElaboracionContrato extends AbstractMB implemen
     public void setMuestraBotonCancelarBusSisco(boolean muestraBotonCancelarBusSisco) {
         this.muestraBotonCancelarBusSisco = muestraBotonCancelarBusSisco;
     }
-    
-    
+
+    public boolean isDeshabilitaBotonSalvar() {
+        return deshabilitaBotonSalvar;
+    }
+
+    public void setDeshabilitaBotonSalvar(boolean deshabilitaBotonSalvar) {
+        this.deshabilitaBotonSalvar = deshabilitaBotonSalvar;
+    }
+
 }

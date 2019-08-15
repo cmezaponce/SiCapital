@@ -15,16 +15,19 @@ co\gov\secretariamovilidad\sicapital\dao\CoProveedoresFachada.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqEntregaS_.class
 co\gov\secretariamovilidad\sicapital\negocio\interfaces\IparametroGeneral.class
 co\gov\secretariamovilidad\sicapital\entidad\CoPlanContratacion.class
+co\gov\secretariamovilidad\sicapital\entidad\TrcOficinasBancoAgrario_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolicitudAdq_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqAmparo_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqEntregaCPK_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoPlanDetPK_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoDtlleSolAdqS_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoDtlleSolAdqD.class
+co\gov\secretariamovilidad\sicapital\entidad\TrcInformacionBasicaPK.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqEntregaCPK.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqDep_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqEntregaC_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoPlanDet_.class
+co\gov\secretariamovilidad\sicapital\entidad\TrcInformacionBasicaPK_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoGrupoS_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqAnexo.class
 co\gov\secretariamovilidad\sicapital\entidad\BinTablas_.class
@@ -43,6 +46,7 @@ co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqCarC_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqCarC.class
 co\gov\secretariamovilidad\sicapital\entidad\CoDtlleSolAdqDPK_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqCarDPK_.class
+co\gov\secretariamovilidad\sicapital\entidad\TrcOficinasBancoAgrario.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqEntregaPK.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqCdp_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoCatalogoC_.class
@@ -51,6 +55,7 @@ co\gov\secretariamovilidad\sicapital\util\ParametroUtil.class
 co\gov\secretariamovilidad\sicapital\entidad\CoGrupoS.class
 co\gov\secretariamovilidad\sicapital\entidad\CoDtlleSolAdqSPK_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoDtlleSolAdqC_.class
+co\gov\secretariamovilidad\sicapital\entidad\TrcTerceros_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqInterventorPK_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoParametroGeneral.class
 co\gov\secretariamovilidad\sicapital\entidad\CoProveedor.class
@@ -58,6 +63,7 @@ co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqCarD_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolicitudAdqPK.class
 co\gov\secretariamovilidad\sicapital\entidad\CoCatalogoC.class
 co\gov\secretariamovilidad\sicapital\util\enums\ErrorEnum.class
+co\gov\secretariamovilidad\sicapital\dao\TrcTercerosFachada.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqRubroPK.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqDep.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolicitudAdq.class
@@ -101,6 +107,7 @@ co\gov\secretariamovilidad\sicapital\entidad\CoDtlleSolAdqC.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqCdpPK_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqDepPK_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqGarantiaPK.class
+co\gov\secretariamovilidad\sicapital\entidad\TrcTerceros.class
 co\gov\secretariamovilidad\sicapital\entidad\CoPlanDet.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqCarDPK.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqEntrega_.class
@@ -114,6 +121,7 @@ co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqRubro_.class
 co\gov\secretariamovilidad\sicapital\entidad\CdpDto.class
 co\gov\secretariamovilidad\sicapital\dao\CoSolElabConFachada.class
 co\gov\secretariamovilidad\sicapital\entidad\CoUsuariosPK.class
+co\gov\secretariamovilidad\sicapital\entidad\TrcInformacionBasica_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoDtlleSolAdqSPK.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqGarantia_.class
 co\gov\secretariamovilidad\sicapital\entidad\CoViabilXLineaPlan_.class
@@ -145,6 +153,7 @@ co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqObligacionPK.class
 co\gov\secretariamovilidad\sicapital\entidad\CoEntidadesIas_.class
 co\gov\secretariamovilidad\sicapital\bean\ControladorPrueba.class
 co\gov\secretariamovilidad\sicapital\entidad\CoEntidadesIas.class
+co\gov\secretariamovilidad\sicapital\entidad\TrcInformacionBasica.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolElabCon.class
 co\gov\secretariamovilidad\sicapital\entidad\CoSolAdqObligacion_.class
 co\gov\secretariamovilidad\sicapital\bean\ControladorLogin.class
